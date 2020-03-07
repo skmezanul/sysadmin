@@ -7,6 +7,7 @@
 # Email: fagner.mendes22@gmail.com
 ###############################################################################
 
+# This script update the configserver plugins
 
 echo "Starting the update process..."
 sleep 2
