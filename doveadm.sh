@@ -2,15 +2,15 @@
 
 ###############################################################################
 # Copyright 2020							                                                
-#Author: Fagner Mendes							                                          
-#License: GNU Public License						                                      
-#Version: 1.0								                                                  
+# Author: Fagner Mendes							                                          
+# License: GNU Public License						                                      
+# Version: 1.0								                                                  
 # Email: fagner.mendes22@gmail.com					                                  
 ###############################################################################
-#This is script is used to create subfolders into maildirbox
-#The most important is active the that subfolders in webmails clients, (Ex: Horde, RoundCube)
+# This is script is used to create subfolders into maildirbox
+# The most important is active the that subfolders in webmails clients, (Ex: Horde, RoundCube)
 
-#Take care, change the "user" on the flag in the first line: (Ex: user=suporte), should be currently the cPanel user on the system.
+# Take care, change the "user" on the flag in the first line: (Ex: user=suporte), should be currently the cPanel user on the system.
 whmapi1 list_pops_for user=suporte | grep ' - ' | sed -e 's/ - //' > /root/emails.txt
 EMAIL=$( cat /root/emails.txt )
 for loop in $EMAIL; do
