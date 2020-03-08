@@ -35,7 +35,7 @@ apt install vsftpd -y
 echo "Done!"
 
 sleep 5
-echo "Starting the start services"
+echo "Starting services"
 systemctl enable apache2
 systemctl start apache2
 systemctl enable  postgresql
