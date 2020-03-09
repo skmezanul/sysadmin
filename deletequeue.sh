@@ -9,11 +9,11 @@
 
 echo "Stoping the Exim Service..."
 sleep 2
-/scripts/restart_srv exim --stop
+/scripts/restartsrv_exim --stop
 echo "Preparing to delete the server queue..."
 sleep 2
 find /var/spool/exim/input -type f -exec rm -f {} +
-echo "Initializing the Exim Server..."
-/scripts/restart_srv exim --start
+echo "Starting the Exim Server..."
+/scripts/restartsrv_exim --start
 echo "The process was done!"
-done
+
