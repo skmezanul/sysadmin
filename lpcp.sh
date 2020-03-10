@@ -13,6 +13,9 @@
 
 echo "Starting the list process email accounts and change passwords"
 sleep 5
+
 uapi list_pops --user=LOGINCPANEL | grep ' - ' | sed -e 's/ - //' > /root/LOGIN_emails.txt
 for email in $(cat /root/LOGIN_emails.txt) ; do uapi --user=contacpanel Email passwd_pop email=$email password=senha domain=dominiodacontas ; do
+sleep 5
+
 echo "The passwords was changed for all accounts"
