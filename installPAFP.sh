@@ -4,7 +4,7 @@
 # Copyright 2020							                                                
 # Author: Fagner Mendes							                                          
 # License: GNU Public License						                                      
-# Version: 1.1								                                                  
+# Version: 1.2								                                                  
 # Email: fagner.mendes22@gmail.com					                                  
 ###############################################################################
 
@@ -17,7 +17,7 @@ echo "Postgres was installed in the system"
 
 echo "Starting installation Apache2"
 apt install apache2 -y
-echo "Apache2 was instaled in the system"
+echo "Apache2 was installed in the system"
 echo "Stating the install process repos PHP"
 apt install software-properties-common -y
 echo "Done!"
