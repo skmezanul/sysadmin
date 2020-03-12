@@ -4,7 +4,7 @@
 # Copyright 2020							                                                
 # Author: Fagner Mendes							                                          
 # License: GNU Public License						                                      
-# Version: 1.0								                                                  
+# Version: 1.1								                                                  
 # Email: fagner.mendes22@gmail.com					                                  
 ###############################################################################
 
