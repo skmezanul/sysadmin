@@ -9,26 +9,37 @@
 ###############################################################################
 
 echo "Starting the update server"
-yum update -y
+yum update -y > /root/yumupdate.log
 echo "Done..."
+clear
 
-/scripts/upcp --force
+sleep 2
+
+/scripts/upcp --force > /root/upcp.log
 echo "Done"
+clear
+
+sleep 2
+
+echo "Prepare to download the cpanel.config
+mv /var/cpanel/cpanel.config /var/cpanel/cpanel.config-BKP
+cd /var/cpanel/
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/cpanel.config
+chmod 644 cpanel.config
+echo "Done..."
+clear
+
+sleep 2
 
 echo "Prepare to install PostgreSLQ"
-/scripts/installpostgres
+/scripts/installpostgres > /root/postgresinstall.txt
 echo "Done"
+clear
 
 sleep 2
 
 echo "Setting default mail catching"
 sed -i s/defaultmailaction=fail/defaultmailaction=fail/g' /var/cpanel/cpanel.config
-echo "Done"
-
-sleep 2
-
-echo "Configuring security policies"
-sed -i 's/SecurityPolicy::PasswordStrength=0/SecurityPolicy::PasswordStrength=1/g' /var/cpanel/cpanel.config
 echo "Done"
 
 sleep 2
@@ -59,6 +70,7 @@ echo "Setting the another port to exim"
 sed -i 's/daemon_smtp_ports = 25 : 465/daemon_smtp_ports = 25 : 465 : 587/g' /etc/exim.conf
 /scripts/buildeximconf
 echo "Done..."
+clear
 
 eleep 2
 
@@ -80,6 +92,7 @@ echo "Prepare to disable function on server"
 /sbin/service avahi-daemon stop
 /sbin/chkconfig avahi-daemon off
 echo "Done..."
+clear
 
 sleep 2
 
@@ -89,8 +102,9 @@ wget https://download.configserver.com/cmc.tgz
 tar -xzf cmc.tgz
 
 cd cmc/
-sh install.sh
+sh install.sh > modsecinstall.txt
 echo "Done..."
+clear
 
 sleep 2
 
@@ -153,8 +167,8 @@ echo "user:dovecot" >> /etc/csf/csf.pignore
 echo "user:cpanelroundcube" >> /etc/csf/csf.pignore
 echo "user:dovenull" >> /etc/csf/csf.pignore
 echo "user:mysql" >> /etc/csf/csf.pignore
-echo "user:mailnull" /etc/csf/csf.pignore
-echo "user:rpm" /etc/csf/csf.pignore
+echo "user:mailnull" >> /etc/csf/csf.pignore
+echo "user:rpm" >> /etc/csf/csf.pignore
 
 echo "Prepare to rename csf.conf"
 mv /etc/csf/csf.conf /etc/csf/csf.conf-BKP
@@ -163,6 +177,7 @@ wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/csf.conf
 chmod 600 csf.conf
 csf -e
 echo "Done..."
+clear
 
 sleep 2
 
@@ -171,11 +186,12 @@ cd ~
 wget https://download.configserver.com/cmq.tgz 
 tar -xzf cmq.tgz 
 cd cmq/ 
-sh install.sh
+sh install.sh > /root/mailqueueinstall.txt
 cd /root
 rm -rf cmq.tgz
 rm -r cmq/
 echo "Done..."
+clear
 
 sleep 2
 
@@ -199,15 +215,17 @@ chmod 000 /etc/httpd/proxy/
 chmod 000 /var/spool/samba/
 chmod 000 /var/mail/vbox/
 echo "Done..."
+clear
 
 sleep 2
 
 echo "Prepare to intall DNS Check"
 cd ~
 wget http://download.ndchost.com/accountdnscheck/latest-accountdnscheck
-sh latest-accountdnscheck
+sh latest-accountdnscheck > /root/dnscheckinstall.txt
 rm -f latest-accountdnscheck
 echo "Done..."
+clear
 
 sleep 2
 
@@ -218,11 +236,92 @@ echo "Done..."
 
 sleep 2
 
+echo "Adding th script remotion"
+echo "30 23 * * * sh /root/remover.sh" >> /var/spool/cron/root
+wget http://arquivos.servhost.com.br/remover.sh --http-user=romero --http-passwd=servhost84@!
+chmod 755 /root/remover.sh
+echo "Done...
+
+sleep 2
+
+echo "Prepare to install EA customization, with all php version and all extensions"
+cd /etc/cpanel/ea4/profiles/custom
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea-custom.json
+echo "Install now, please wait...!"
+sleep 2
+/usr/local/bin/ea_install_profile --install /etc/cpanel/ea4/profiles/custom/ea-custom.json > /root/easyapacheinstall.txt
+echo "Done..."
+
+sleep 2
+
+echo "Prepare to enable quotas"
+/scripts/fixquotas
+echo "Done..."
+
+sleep 2
 
 
+echo "Prepare to set script for check partitionon space"
+mkdir /root/bkp/
+cd /root/bkp
+wget https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/spacemonitor.sh
+mv spacemonitor.sh espaco.sh
+chmod 755 /root/bkp/espaco.sh
+echo "40 23 * * * sh /root/bkp/espaco.sh" >> /var/spool/cron/root
+echo "Done..."
 
+sleep 2
 
+echo "Prepare to update MariaDB. Take Care, update MariDB first in WHM interface
+echo "If the update was done, please Press <ENTER> to continue..."
+read #pausa até que o ENTER seja pressionado
+echo "Continuing"
+mv /etc/my.cnf /etc/my.cnf-BKP
+cd /etc/
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/my.cnf
+chmod 644 /etc/my.cnf
+/scripts/restartsrv-mysql --restart
+echo "Done..."
+clear
 
+sleep 2
+
+echo "Prepare to set Apache Monitor"
+mkdir /root/cron/
+cd /root/cron
+wget https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/httpdmonitor.sh
+mv httpdmonitor.sh http.sh
+chmod 755 /root/cron/http.sh
+echo "00 * * * * sh /root/cron/http.sh" >> /var/spool/cron/root
+echo "Done..."
+clear
+
+sleep 2
+
+echo "Check the hostname"
+hostname
+echo "Is correct, if so Press <ENTER> to continue..."
+read #pausa até que o ENTER seja pressionado
+echo "Done..."
+
+sleep 2
+
+echo "Prepare to fix erros for Roundcube"
+rpm -e --nodeps cpanel-roundcubemail
+/usr/local/cpanel/scripts/check_cpanel_rpms --fix > /root/fixroundcube.txt
+echo "Done..."
+clear
+
+sleep 2
+
+echo "Prepare to copy SSH key"
+cd ~ ; mkdir .ssh ; chmod 700 .ssh ; cd .ssh
+/root/.ssh/
+scp -P 1865 root@IP:/root/.ssh/authorized_keys /root/.ssh/
+chmod 600 authorized_keys
+echo "Done..."
+
+sleep 2
 
 
 
