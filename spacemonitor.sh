@@ -23,5 +23,5 @@ if [ ! -s /root/bkp/usohd.txt ] ;then
 echo "Arquivo esta vazio!"
 else
 #altere a linha abaixo aonde esta escrito seu@email.com.br pelo seu email correto
-cat /root/bkp/usohd.txt | mail -s "[ Utilizacao do HD em "$(hostname)" ]" EMAIL
+cat /root/bkp/usohd.txt | mail -s "[ Utilizacao do HD em "$(hostname)" ]" romeroayub@gmail.com
 fi
