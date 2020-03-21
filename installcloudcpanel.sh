@@ -4,7 +4,7 @@
 # Copyright 2020							                                                
 # Author: Fagner Mendes							                                          
 # License: GNU Public License						                                      
-# Version: 1.0								                                                  
+# Version: 2.1								                                                  
 # Email: fagner.mendes22@gmail.com					                                  
 ###############################################################################
 
@@ -102,7 +102,10 @@ wget https://download.configserver.com/cmc.tgz
 tar -xzf cmc.tgz
 
 cd cmc/
-sh install.sh > modsecinstall.txt
+sh install.sh > /root/modsecinstall.txt
+cd ~
+rm -f cmc.tgz
+rm -rf cmc/
 echo "Done..."
 clear
 
@@ -323,6 +326,60 @@ echo "Done..."
 
 sleep 2
 
+
+echo "Prepare to install monitoring tools"
+yum install epel-release -y > /root/yum.log
+yum install htop -y > /root/yum.log
+yum install atop -y > /root/yum.log
+yum install iftop -y > /root/yum.log
+yum install apachetop -y > /root/yum.log
+yum install mytop -y > /root/yum.log
+yum install nethogs -y > /root/yum.log
+yum install nload -y > /root/yum.log
+yum update --disablerepo=epel
+
+cd /root/
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/.mytop
+echo "Done..."
+
+sleep 2
+
+echo "Prepare to disable Selinux"
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+echo "Disabled"
+
+sleep 2
+
+echo "Prepare to enable configserver update"
+echo "00 22 * * 1,6 bash /root/configserverupdate.sh" >> /var/spool/cron/root
+cd /root
+wget https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/updatecs.sh
+mv /root/updatecs.sh /root/configserverupdate.sh
+echo "Done..."
+clear
+
+sleep 2
+
+echo "Prepare to check Roundcube DB"
+bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/roudcubebase.sh)
+echo "Is all right? Press <ENTER> to continue..."
+read #pausa até que o ENTER seja pressionado
+echo "Done..."
+clear
+
+sleep 2
+
+echo "Prepare to change the logrotate"
+mv /etc/logrotate.d/maillog /etc/logrotate.d/maillog-BKP
+cd /etc/logrotate.d/
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/maillog
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/apache
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/cpanel
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/messages
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ssh
+echo "Done..."
+
+clear
 
 
 
