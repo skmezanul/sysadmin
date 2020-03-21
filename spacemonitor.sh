@@ -8,6 +8,7 @@ touch /dev/null > /root/bkp/usohd.txt
 #altere onde esta escrito /SUAPARTICAO para a partição que deseja monitorar
 #exemplo /home  ou /var ou simplismente o /
 USO=`df -h / | tail -1 | awk '{print $5}'| sed "s/%//g"`
+HOSTNAME=`echo $HOSTNAME`
 #
 #Abaixo aonde esta escrito 80 altere para o percentual que deseja que o alerta seja acionado
 #enviado a notificacao atraves do email que o seu HD ultrapassou o persentual.
