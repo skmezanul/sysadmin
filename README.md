@@ -42,6 +42,8 @@ imapsync-batch.sh - Migrate email via IMAP to IMAP
 
 imapsyncgmail.sh - Migrate email from Gmail via IMAP
 
+imapsyncgmailpowershell.bat - Migrate email from Gmail via IMAP (Script PowerShell)
+
 inodesearch.sh - Search for inodes uses for cPanel users in the system
 
 installPAFP.sh - Install and configure a Server with PhP, Apache, Ftp and PostgreSql
