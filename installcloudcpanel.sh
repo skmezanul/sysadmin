@@ -4,7 +4,7 @@
 # Copyright 2020							                                                
 # Author: Fagner Mendes							                                          
 # License: GNU Public License						                                      
-# Version: 2.3							                                                  
+# Version: 2.4							                                                  
 # Email: fagner.mendes22@gmail.com					                                  
 ###############################################################################
 
@@ -398,5 +398,6 @@ cat /root/mailqueueinstall.log | mail -s "mailqueueinstall.log" fagner.mendes@se
 cat /root/dnscheckinstall.log | mail -s "dnscheckinstall.log" fagner.mendes@servhost.com.br
 cat /root/easyapacheinstall.log | mail -s "easyapacheinstall.log" fagner.mendes@servhost.com.br
 cat /root/fixroundcube.log | mail -s "fixroundcube.log" fagner.mendes@servhost.com.br
+cat /root/yum.log | mail -s "yum.log" fagner.mendes@servhost.com.br
 
 clear
