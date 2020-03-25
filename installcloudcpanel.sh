@@ -4,7 +4,7 @@
 # Copyright 2020							                                                
 # Author: Fagner Mendes							                                          
 # License: GNU Public License						                                      
-# Version: 2.1								                                                  
+# Version: 2.2								                                                  
 # Email: fagner.mendes22@gmail.com					                                  
 ###############################################################################
 
@@ -45,11 +45,14 @@ echo "Done"
 sleep 2
 
 echo "Disable functions on Apache"
+cp /etc/apache2/conf/httpd.conf /etc/apache2/conf/httpd.conf-BKP
 sed -i 's/TraceEnable ON/TraceEnable Off/g' /etc/apache2/conf/httpd.conf
 sed -i 's/ServerTokens ProductOnly/ServerTokens ProductOnly/g' /etc/apache2/conf/httpd.conf
 sed -i 's/FileETag None/FileETag None/g' /etc/apache2/conf/httpd.conf
-apachectl graceful
+/scripts/rebuildhttpdconf
+apachectl status
 echo "Done"
+clear
 
 sleep 2
 
@@ -59,6 +62,7 @@ sed -i 's/PassivePortRange 49152 65534/PassivePortRange 30000 50000/g' /etc/pure
 sed -i 's/AnonymousCantUpload no/AnonymousCantUpload yes/g' /etc/pure-ftpd.conf
 /scripts/restartsrv_ftpd --restart
 echo "Done..."
+
 sleep 2
 
 echo "Disabling GCC - Compilers"
@@ -74,7 +78,7 @@ clear
 
 eleep 2
 
-echo "Prepare to disable function on server"
+echo "Prepare to disable functions in the server"
 /sbin/service cups stop
 /sbin/chkconfig cups off 
 /sbin/service nfslock stop
@@ -239,7 +243,7 @@ echo "Done..."
 
 sleep 2
 
-echo "Adding th script remotion"
+echo "Adding the script remotion"
 echo "30 23 * * * sh /root/remover.sh" >> /var/spool/cron/root
 wget http://arquivos.servhost.com.br/remover.sh --http-user=romero --http-passwd=servhost84@!
 chmod 755 /root/remover.sh
@@ -247,7 +251,7 @@ echo "Done...
 
 sleep 2
 
-echo "Prepare to install EA customization, with all php version and all extensions"
+echo "Prepare to install EA customization, with all PHP version and all extensions"
 cd /etc/cpanel/ea4/profiles/custom
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea-custom.json
 echo "Install now, please wait...!"
@@ -302,10 +306,15 @@ clear
 sleep 2
 
 echo "Check the hostname"
-hostname
-echo "Is correct, if so Press <ENTER> to continue..."
-read #pausa até que o ENTER seja pressionado
-echo "Done..."
+HOSTNAME=`echo $HOSTNAME`
+echo "'$HOSTNAME'Is correct?, otherwise Press Press <ENTER> and enter the new hostname"
+read #pause until ENTER is pressed
+clear
+echo "Inform the new hostname"
+read new_hostname
+echo $new_hostname > /etc/hostname
+clear
+echo "The new hostname is: '$new_hostname' "
 
 sleep 2
 
