@@ -4,7 +4,7 @@
 # Copyright 2020							                                                
 # Author: Fagner Mendes							                                          
 # License: GNU Public License						                                      
-# Version: 2.2								                                                  
+# Version: 2.3							                                                  
 # Email: fagner.mendes22@gmail.com					                                  
 ###############################################################################
 
@@ -32,7 +32,7 @@ clear
 sleep 2
 
 echo "Prepare to install PostgreSLQ"
-/scripts/installpostgres > /root/postgresinstall.txt
+/scripts/installpostgres > /root/postgresinstall.log
 echo "Done"
 clear
 
@@ -106,7 +106,7 @@ wget https://download.configserver.com/cmc.tgz
 tar -xzf cmc.tgz
 
 cd cmc/
-sh install.sh > /root/modsecinstall.txt
+sh install.sh > /root/modsecinstall.log
 cd ~
 rm -f cmc.tgz
 rm -rf cmc/
@@ -193,7 +193,7 @@ cd ~
 wget https://download.configserver.com/cmq.tgz 
 tar -xzf cmq.tgz 
 cd cmq/ 
-sh install.sh > /root/mailqueueinstall.txt
+sh install.sh > /root/mailqueueinstall.log
 cd /root
 rm -rf cmq.tgz
 rm -r cmq/
@@ -229,7 +229,7 @@ sleep 2
 echo "Prepare to intall DNS Check"
 cd ~
 wget http://download.ndchost.com/accountdnscheck/latest-accountdnscheck
-sh latest-accountdnscheck > /root/dnscheckinstall.txt
+sh latest-accountdnscheck > /root/dnscheckinstall.log
 rm -f latest-accountdnscheck
 echo "Done..."
 clear
@@ -256,7 +256,7 @@ cd /etc/cpanel/ea4/profiles/custom
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea-custom.json
 echo "Install now, please wait...!"
 sleep 2
-/usr/local/bin/ea_install_profile --install /etc/cpanel/ea4/profiles/custom/ea-custom.json > /root/easyapacheinstall.txt
+/usr/local/bin/ea_install_profile --install /etc/cpanel/ea4/profiles/custom/ea-custom.json > /root/easyapacheinstall.log
 echo "Done..."
 
 sleep 2
@@ -320,7 +320,7 @@ sleep 2
 
 echo "Prepare to fix erros for Roundcube"
 rpm -e --nodeps cpanel-roundcubemail
-/usr/local/cpanel/scripts/check_cpanel_rpms --fix > /root/fixroundcube.txt
+/usr/local/cpanel/scripts/check_cpanel_rpms --fix > /root/fixroundcube.log
 echo "Done..."
 clear
 
@@ -338,13 +338,13 @@ sleep 2
 
 echo "Prepare to install monitoring tools"
 yum install epel-release -y > /root/yum.log
-yum install htop -y > /root/yum.log
-yum install atop -y > /root/yum.log
-yum install iftop -y > /root/yum.log
-yum install apachetop -y > /root/yum.log
-yum install mytop -y > /root/yum.log
-yum install nethogs -y > /root/yum.log
-yum install nload -y > /root/yum.log
+yum install htop -y >> /root/yum.log
+yum install atop -y >> /root/yum.log
+yum install iftop -y >> /root/yum.log
+yum install apachetop -y >> /root/yum.log
+yum install mytop -y >> /root/yum.log
+yum install nethogs -y >> /root/yum.log
+yum install nload -y >> /root/yum.log
 yum update --disablerepo=epel
 
 cd /root/
@@ -371,8 +371,8 @@ sleep 2
 
 echo "Prepare to check Roundcube DB"
 bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/roudcubebase.sh)
-echo "Is all right? Press <ENTER> to continue..."
-read #pausa até que o ENTER seja pressionado
+echo "Is all right? Press <ENTER> to continue"
+read #pause until ENTER is pressed
 echo "Done..."
 clear
 
@@ -388,23 +388,15 @@ wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/messages
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ssh
 echo "Done..."
 
+
+echo "Prepare to send emails"
+cat /root/yumupdate.log | mail -s "yumupdate.log" fagner.mendes@servhost.com.br
+cat /root/upcp.log | mail -s "upcp.log" fagner.mendes@servhost.com.br
+cat /root/postgresinstall.log | mail -s "postgresinstall.log" fagner.mendes@servhost.com.br
+cat /root/modsecinstall.log | mail -s "modsecinstall.log" fagner.mendes@servhost.com.br
+cat /root/mailqueueinstall.log | mail -s "mailqueueinstall.log" fagner.mendes@servhost.com.br
+cat /root/dnscheckinstall.log | mail -s "dnscheckinstall.log" fagner.mendes@servhost.com.br
+cat /root/easyapacheinstall.log | mail -s "easyapacheinstall.log" fagner.mendes@servhost.com.br
+cat /root/fixroundcube.log | mail -s "fixroundcube.log" fagner.mendes@servhost.com.br
+
 clear
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
