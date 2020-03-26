@@ -4,7 +4,7 @@
 # Copyright 2020							                                                
 # Author: Fagner Mendes							                                          
 # License: GNU Public License						                                      
-# Version: 2.4							                                                  
+# Version: 2.5							                                                  
 # Email: fagner.mendes22@gmail.com					                                  
 ###############################################################################
 
@@ -115,7 +115,17 @@ clear
 
 sleep 2
 
-echo "Prepare to configure firewall CSF"
+echo "Prepare to configure and install firewall CSF"
+echo "Installing"
+wget https://download.configserver.com/csf.tgz 
+tar -xzf csf.tgz 
+cd csf/ 
+sh install.sh
+rm /root/install.sh
+clear
+
+sleep 2
+
 echo "Adding the user csf..."
 useradd csf -s /bin/false
 cd /etc/csf/messenger
@@ -251,7 +261,8 @@ echo "Done...
 
 sleep 2
 
-echo "Prepare to install EA customization, with all PHP version and all extensions"
+echo "Prepare to install EA customization, since 5.4 to 7.3 and any extensions"
+mkdir /etc/cpanel/ea4/profiles/custom
 cd /etc/cpanel/ea4/profiles/custom
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea-custom.json
 echo "Install now, please wait...!"
@@ -279,7 +290,7 @@ echo "Done..."
 
 sleep 2
 
-echo "Prepare to update MariaDB. Take Care, update MariDB first in WHM interface
+echo "Prepare to update MariaDB. Take Care, update MariaDB first in WHM interface
 echo "If the update was done, please Press <ENTER> to continue..."
 read #pausa até que o ENTER seja pressionado
 echo "Continuing"
@@ -328,6 +339,7 @@ sleep 2
 
 echo "Prepare to copy SSH key"
 cd ~ ; mkdir .ssh ; chmod 700 .ssh ; cd .ssh
+mv /root/.ssh/authorized_keys /root/.ssh/authorized_keys-BKP
 /root/.ssh/
 scp -P 1865 root@IP:/root/.ssh/authorized_keys /root/.ssh/
 chmod 600 authorized_keys
