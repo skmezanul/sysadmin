@@ -4,11 +4,11 @@
 # Copyright 2020							                                                
 # Author: Fagner Mendes							                                          
 # License: GNU Public License						                                      
-# Version: 1.5						                                                  
+# Version: 1.6					                                                  
 # Email: fagner.mendes22@gmail.com					                                  
 ###############################################################################
 
-echo "Prepare to install yum utils pachage"
+echo "Prepare to install yum utils package"
 yum install yum-utils -y
 clear
 package-cleanup --dupes | tail -n +3 > duplist.txt
