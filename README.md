@@ -81,3 +81,5 @@ updatecs.sh - Update ConfigServer Plugins in the server
 updatemagic.sh - Update the MagicSpam for cPanel server
 
 wprestore.sh - Restore the WordPress CMS
+
+monitorfull.sh - Monitoring of load, memory and process
