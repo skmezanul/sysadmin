@@ -83,3 +83,5 @@ updatemagic.sh - Update the MagicSpam for cPanel server
 wprestore.sh - Restore the WordPress CMS
 
 monitorfull.sh - Monitoring of load, memory and process
+
+sa-learn.sh - Train the SpaAssassin for new SPAM_TRAIN and HAM_TRAIN
