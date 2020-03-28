@@ -1,25 +1,26 @@
 #!/bin/bash
 
-###############################################################################
-# Copyright 2020							                                                
-# Author: Fagner Mendes							                                          
-# License: GNU Public License						                                      
-# Version: 2.5							                                                  
-# Email: fagner.mendes22@gmail.com					                                  
-###############################################################################
+echo		"###############################################################################"
+echo					     "# Copyright"						    
+echo					         "2020"						                                                
+echo					"# Author: Fagner Mendes" 	
+echo					"# License: GNU Public License"					                                      
+echo                                 	"# Version: 2.6"			                                                  
+echo					"# Email: fagner.mendes22@gmail.com"				                                  
+echo		"###############################################################################"
 
 echo "Starting the update server"
 yum update -y > /root/yumupdate.log
 echo "Done..."
 clear
 
-sleep 2
+sleep 5
 
 /scripts/upcp --force > /root/upcp.log
 echo "Done"
 clear
 
-sleep 2
+sleep 5
 
 echo "Prepare to download the cpanel.config
 mv /var/cpanel/cpanel.config /var/cpanel/cpanel.config-BKP
@@ -29,20 +30,20 @@ chmod 644 cpanel.config
 echo "Done..."
 clear
 
-sleep 2
+sleep 5
 
 echo "Prepare to install PostgreSLQ"
 /scripts/installpostgres > /root/postgresinstall.log
 echo "Done"
 clear
 
-sleep 2
+sleep 5
 
 echo "Setting default mail catching"
 sed -i s/defaultmailaction=fail/defaultmailaction=fail/g' /var/cpanel/cpanel.config
 echo "Done"
 
-sleep 2
+sleep 5
 
 echo "Disable functions on Apache"
 cp /etc/apache2/conf/httpd.conf /etc/apache2/conf/httpd.conf-BKP
@@ -54,7 +55,7 @@ apachectl status
 echo "Done"
 clear
 
-sleep 2
+sleep 5
 
 echo "Disable functions to Pure-FTPD"
 sed -i 's/NoAnonymous no/NoAnonymous yes/g' /etc/pure-ftpd.conf
@@ -63,12 +64,12 @@ sed -i 's/AnonymousCantUpload no/AnonymousCantUpload yes/g' /etc/pure-ftpd.conf
 /scripts/restartsrv_ftpd --restart
 echo "Done..."
 
-sleep 2
+sleep 5
 
 echo "Disabling GCC - Compilers"
 chmod 750 /usr/bin/gcc
 
-sleep 2
+sleep 5
 
 echo "Setting the another port to exim"
 sed -i 's/daemon_smtp_ports = 25 : 465/daemon_smtp_ports = 25 : 465 : 587/g' /etc/exim.conf
@@ -76,29 +77,18 @@ sed -i 's/daemon_smtp_ports = 25 : 465/daemon_smtp_ports = 25 : 465 : 587/g' /et
 echo "Done..."
 clear
 
-eleep 2
+eleep 5
 
 echo "Prepare to disable functions in the server"
-/sbin/service cups stop
-/sbin/chkconfig cups off 
-/sbin/service nfslock stop
-/sbin/chkconfig nfslock off
-/sbin/service rpcidmapd stop 
-/sbin/chkconfig rpcidmapd off
-/sbin/service bluetooth stop
-/sbin/chkconfig bluetooth off
-/sbin/service anacron stop
-/sbin/chkconfig anacron off
-/sbin/service hidd stop
-/sbin/chkconfig hidd off
-/sbin/service pcscd stop
-/sbin/chkconfig pcscd off
-/sbin/service avahi-daemon stop
-/sbin/chkconfig avahi-daemon off
+for SERVICE in autofs cups nfslock rpcidmapd rpcidmapd bluetooth anacron hidd pcscd avahi-daemon
+do
+        service "$SERVICE" stop > /dev/null 2>&1
+        chkconfig "$SERVICE" off > /dev/null 2>&1
+done
 echo "Done..."
 clear
 
-sleep 2
+sleep 5
 
 echo "Prepare to install Modsec"
 cd ~
@@ -113,7 +103,7 @@ rm -rf cmc/
 echo "Done..."
 clear
 
-sleep 2
+sleep 5
 
 echo "Prepare to configure and install firewall CSF"
 echo "Installing"
@@ -121,10 +111,10 @@ wget https://download.configserver.com/csf.tgz
 tar -xzf csf.tgz 
 cd csf/ 
 sh install.sh
-rm /root/install.sh
+rm -f /root/install.sh
 clear
 
-sleep 2
+sleep 5
 
 echo "Adding the user csf..."
 useradd csf -s /bin/false
@@ -135,7 +125,7 @@ mv index.text index.text-bkp
 echo "Done..."
 
 echo "Downlowing the new files, please wait..."
-sleep 2"
+sleep 5"
 wget http://arquivos.servhost.com.br/index.html --http-user=romero --http-passwd=servhost84@!
 wget http://arquivos.servhost.com.br/index.text --http-user=romero --http-passwd=servhost84@!
 echo "Done..."
@@ -146,21 +136,21 @@ mv csf.allow csf.allow-bkp
 mv csf.deny csf.deny-bkp
 echo "Done..."
 
-sleep 2
+sleep 5
 
 echo "Downlowing the new files, please wait..."
 wget http://arquivos.servhost.com.br/csf.allow --http-user=romero --http-passwd=servhost84@!
 wget http://arquivos.servhost.com.br/csf.deny --http-user=romero --http-passwd=servhost84@!
 echo "Done..."
 
-sleep 2
+sleep 5
 
 echo "Setting permissions for csf files configuration"
 chmod 600 /etc/csf/csf.allow
 chmod 600 /etc/csf/csf.deny
 echo "Done..."
 
-sleep 2
+sleep 5
 
 echo "Prepare to rename the files permission - TCP Wrapper"
 cd /etc
@@ -172,7 +162,7 @@ echo "Downlowding the new files, please wait..."
 wget http://arquivos.servhost.com.br/hosts.allow --http-user=romero --http-passwd=servhost84@!
 wget http://arquivos.servhost.com.br/hosts.deny --http-user=romero --http-passwd=servhost84@!
 echo "Done..."
-sleep 2
+sleep 5
 
 echo "Setting new permissions"
 chmod 644 /etc/hosts.allow
@@ -196,7 +186,7 @@ csf -e
 echo "Done..."
 clear
 
-sleep 2
+sleep 5
 
 echo "Prepare to install Mail Queue"
 cd ~
@@ -210,7 +200,7 @@ rm -r cmq/
 echo "Done..."
 clear
 
-sleep 2
+sleep 5
 
 echo "Prepare to changes the options in the SSHD"
 sed -i 's/Port 22/Port 1865/g' /etc/ssh/sshd_config
@@ -220,7 +210,7 @@ sed -i 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config
 /scripts/restartsrv_sshd --restart
 echo "Done..."
 
-sleep 2
+sleep 5
 
 echo "Prepare to changes the permission files"
 chmod 750 /usr/bin/rcp
@@ -234,7 +224,7 @@ chmod 000 /var/mail/vbox/
 echo "Done..."
 clear
 
-sleep 2
+sleep 5
 
 echo "Prepare to intall DNS Check"
 cd ~
@@ -244,14 +234,14 @@ rm -f latest-accountdnscheck
 echo "Done..."
 clear
 
-sleep 2
+sleep 5
 
 echo "Prepare to edit recursion DNS"
 sed -i 's/recursion yes/recursion no/g' /etc/named.conf
 /scripts/restartsrv_named --restart
 echo "Done..."
 
-sleep 2
+sleep 5
 
 echo "Adding the script remotion"
 echo "30 23 * * * sh /root/remover.sh" >> /var/spool/cron/root
@@ -259,24 +249,24 @@ wget http://arquivos.servhost.com.br/remover.sh --http-user=romero --http-passwd
 chmod 755 /root/remover.sh
 echo "Done...
 
-sleep 2
+sleep 5
 
 echo "Prepare to install EA customization, since 5.4 to 7.3 and any extensions"
 mkdir /etc/cpanel/ea4/profiles/custom
 cd /etc/cpanel/ea4/profiles/custom
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea-custom.json
 echo "Install now, please wait...!"
-sleep 2
+sleep 5
 /usr/local/bin/ea_install_profile --install /etc/cpanel/ea4/profiles/custom/ea-custom.json > /root/easyapacheinstall.log
 echo "Done..."
 
-sleep 2
+sleep 5
 
 echo "Prepare to enable quotas"
 /scripts/fixquotas
 echo "Done..."
 
-sleep 2
+sleep 5
 
 
 echo "Prepare to set script for check partitionon space"
@@ -288,7 +278,7 @@ chmod 755 /root/bkp/espaco.sh
 echo "40 23 * * * sh /root/bkp/espaco.sh" >> /var/spool/cron/root
 echo "Done..."
 
-sleep 2
+sleep 5
 
 echo "Prepare to update MariaDB. Take Care, update MariaDB first in WHM interface
 echo "If the update was done, please Press <ENTER> to continue..."
@@ -302,7 +292,7 @@ chmod 644 /etc/my.cnf
 echo "Done..."
 clear
 
-sleep 2
+sleep 5
 
 echo "Prepare to set Apache Monitor"
 mkdir /root/cron/
@@ -314,7 +304,7 @@ echo "00 * * * * sh /root/cron/http.sh" >> /var/spool/cron/root
 echo "Done..."
 clear
 
-sleep 2
+sleep 5
 
 echo "Check the hostname"
 HOSTNAME=`echo $HOSTNAME`
@@ -327,7 +317,7 @@ echo $new_hostname > /etc/hostname
 clear
 echo "The new hostname is: '$new_hostname' "
 
-sleep 2
+sleep 5
 
 echo "Prepare to fix erros for Roundcube"
 rpm -e --nodeps cpanel-roundcubemail
@@ -335,7 +325,7 @@ rpm -e --nodeps cpanel-roundcubemail
 echo "Done..."
 clear
 
-sleep 2
+sleep 5
 
 echo "Prepare to copy SSH key"
 cd ~ ; mkdir .ssh ; chmod 700 .ssh ; cd .ssh
@@ -345,7 +335,7 @@ scp -P 1865 root@IP:/root/.ssh/authorized_keys /root/.ssh/
 chmod 600 authorized_keys
 echo "Done..."
 
-sleep 2
+sleep 5
 
 
 echo "Prepare to install monitoring tools"
@@ -363,13 +353,13 @@ cd /root/
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/.mytop
 echo "Done..."
 
-sleep 2
+sleep 5
 
 echo "Prepare to disable Selinux"
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 echo "Disabled"
 
-sleep 2
+sleep 5
 
 echo "Prepare to enable configserver update"
 echo "00 22 * * 1,6 bash /root/configserverupdate.sh" >> /var/spool/cron/root
@@ -379,7 +369,7 @@ mv /root/updatecs.sh /root/configserverupdate.sh
 echo "Done..."
 clear
 
-sleep 2
+sleep 5
 
 echo "Prepare to check Roundcube DB"
 bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/roudcubebase.sh)
@@ -388,7 +378,7 @@ read #pause until ENTER is pressed
 echo "Done..."
 clear
 
-sleep 2
+sleep 5
 
 echo "Prepare to change the logrotate"
 mv /etc/logrotate.d/maillog /etc/logrotate.d/maillog-BKP
