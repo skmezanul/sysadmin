@@ -85,3 +85,5 @@ wprestore.sh - Restore the WordPress CMS
 monitorfull.sh - Monitoring of load, memory and process
 
 sa-learn.sh - Train the SpaAssassin for new SPAM_TRAIN and HAM_TRAIN
+
+permcpanel.sh - Find and correct permissions in cPanel
