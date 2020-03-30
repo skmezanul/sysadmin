@@ -1,18 +1,39 @@
 #!/bin/bash
 
-echo		"###############################################################################"
-echo					     "# Copyright"						    
-echo					         "2020"						                                                
-echo					"# Author: Fagner Mendes" 	
-echo					"# License: GNU Public License"					                                      
-echo                                 	"# Version: 2.6"			                                                  
-echo					"# Email: fagner.mendes22@gmail.com"				                                  
-echo		"###############################################################################"
+echo	-e	"###############################################################################"
+echo	-e				     "# Copyright"						    
+echo	-e				         "2020"						                                                
+echo	-e				"# Author: Fagner Mendes" 	
+echo	-e				"# License: GNU Public License"					                                      
+echo    -e                             	"# Version: 2.7"			                                                  
+echo	-e				"# Email: fagner.mendes22@gmail.com"				                                  
+echo	-e	"###############################################################################"
+
+
+<< 'CHANGELOG'
+2.7 - 30 de março/2020 [Author: Fagner Mendes]
+#Changes:
+- Added the function to verify if cPanel is installed
+
+CHANGELOG
+
+echo ""
+
 
 echo "Starting the update server"
 yum update -y > /root/yumupdate.log
 echo "Done..."
 clear
+
+sleep 5
+
+echo "Checking if the cPanel is installed in this server"
+x=$(/usr/local/cpanel/cpanel -V 2>/dev/null)
+if [ -z "$x" ]; then
+        echo "cPanel is installed"
+else
+        echo "cPanel is not installed"
+fi
 
 sleep 5
 
