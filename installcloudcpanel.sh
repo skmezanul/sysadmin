@@ -5,7 +5,7 @@ echo	-e				     "# Copyright"
 echo	-e				         "2020"						                                                
 echo	-e				"# Author: Fagner Mendes" 	
 echo	-e				"# License: GNU Public License"					                                      
-echo    -e                             	"# Version: 2.7"			                                                  
+echo    -e                             	"# Version: 2.9"			                                                  
 echo	-e				"# Email: fagner.mendes22@gmail.com"				                                  
 echo	-e	"###############################################################################"
 
@@ -14,6 +14,13 @@ echo	-e	"#######################################################################
 2.7 - 30 de março/2020 [Author: Fagner Mendes]
 #Changes:
 - Added the function to verify if cPanel is installed
+
+
+2.9 - 31 de março/200 [Author: Fagner Mendes]
+#Changes
+- Changed the function tha check if cpanel is installed
+- Changed the function to change permission in files
+- Added the function that downlod php.ini for all php versions
 
 CHANGELOG
 
@@ -28,15 +35,23 @@ clear
 sleep 5
 
 echo "Checking if the cPanel is installed in this server"
-x=$(/usr/local/cpanel/cpanel -V 2>/dev/null)
-if [ -z "$x" ]; then
-        echo "cPanel is installed"
+if result=$(/usr/local/cpanel/cpanel -V 2>/dev/null); then
+    stdout=$result
 else
-        echo "cPanel is not installed"
-fi
+    rc=$?
+    stderr=$result
 
+if [ $? -eq 0 ]; then
+  echo "cPanel is installed"
+else
+  echo "cPanel is not installed"
+fi
+  fi
+
+clear
 sleep 5
 
+echo "Updating the cPanel, please wait..."
 /scripts/upcp --force > /root/upcp.log
 echo "Done"
 clear
@@ -84,11 +99,6 @@ sed -i 's/PassivePortRange 49152 65534/PassivePortRange 30000 50000/g' /etc/pure
 sed -i 's/AnonymousCantUpload no/AnonymousCantUpload yes/g' /etc/pure-ftpd.conf
 /scripts/restartsrv_ftpd --restart
 echo "Done..."
-
-sleep 5
-
-echo "Disabling GCC - Compilers"
-chmod 750 /usr/bin/gcc
 
 sleep 5
 
@@ -234,15 +244,20 @@ echo "Done..."
 sleep 5
 
 echo "Prepare to changes the permission files"
-chmod 750 /usr/bin/rcp
-chmod 750 /usr/bin/wget
-chmod 750 /usr/bin/lynx
-chmod 750 /usr/bin/links
-chmod 750 /usr/bin/scp
-chmod 000 /etc/httpd/proxy/
-chmod 000 /var/spool/samba/
-chmod 000 /var/mail/vbox/
-echo "Done..."
+for FILES1 in /usr/bin/rcp /usr/bin/rcp /usr/bin/lynx /usr/bin/links /usr/bin/scp /usr/bin/gcc
+do
+
+chmod 750 "$FILES1" > /dev/null 2>&1
+done
+
+for FILES2 in /etc/httpd/proxy/ /var/spool/samba/ /var/mail/vbox/
+do
+
+chmod 000 "$FILES2" > /dev/null 2>&1
+done
+
+echo "Done"
+
 clear
 
 sleep 5
@@ -282,6 +297,62 @@ sleep 5
 echo "Done..."
 
 sleep 5
+
+echo "Downloading the php.ini files for all php versions"
+
+cd /opt/cpanel/ea-php54/root/etc/
+mv php.ini-BKP
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.4-php.ini
+mv ea.5.4-php.ini php.ini
+echo "done"
+clear
+
+cd /opt/cpanel/ea-php55/root/etc/
+mv php.ini-BKP
+https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.5-php.ini
+mv ea.5.5-php.ini php.ini
+echo "done"
+clear
+
+cd /opt/cpanel/ea-php56/root/etc/
+mv php.ini-BKP
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.6-php.ini
+mv ea.5.6-php.ini php.ini
+echo "done"
+clear
+
+cd /opt/cpanel/ea-php70/root/etc/
+mv php.ini-BKP
+https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.0-php.ini
+mv ea.7.0-php.ini php.ini
+echo "done"
+clear
+
+cd /opt/cpanel/ea-php71/root/etc/
+mv php.ini-BKP
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.1-php.ini
+mv ea.7.1-php.ini php.ini
+echo "done"
+clear
+
+cd /opt/cpanel/ea-php72/root/etc/
+mv php.ini-BKP
+https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.2-php.ini
+mv ea.7.2-php.ini php.ini
+echo "done"
+clear
+
+cd cd /opt/cpanel/ea-php72/root/etc/
+mv php.ini-BKP
+https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.3-php.ini
+mv ea.7.3-php.ini php.ini
+echo "done"
+clear
+
+Done"
+
+clear
+
 
 echo "Prepare to enable quotas"
 /scripts/fixquotas
