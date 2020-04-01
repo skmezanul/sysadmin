@@ -13,7 +13,7 @@
 << 'CHANGELOG'
 1.1 - 01/04/2020 [Author: Fagner Mendes, help from Felipe Rangel]
 #Changes
-- Reformulate the script
+- Reformulatiion of script
 
 CHANGELOG
 
