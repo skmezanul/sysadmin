@@ -4,18 +4,20 @@
 # Copyright 2020							                                                
 # Author: Fagner Mendes							                                          
 # License: GNU Public License						                                      
-# Version: 1.0								                                                  
+# Version: 1.1								                                                  
 # Email: fagner.mendes22@gmail.com					                                  
 ###############################################################################
 
 echo ""
 
 echo "Prepare to renane file db zone template"
+cd /var/cpanel/zonetemplates/
 mv /var/cpanel/zonetemplates/root_standardvirtualftp /var/cpanel/zonetemplates/root_standardvirtualftp-bkp
 echo "Done"
 sleep 5
 echo "Downloadong the new file, please wait"
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/root_standardvirtualftp
+chmod 644 root_standardvirtualftp
 clear
 sleep 5
 bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/createdir.sh)
