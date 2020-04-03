@@ -22,6 +22,10 @@ echo	-e	"#######################################################################
 - Changed the function to change permission in files
 - Added the function that downlod php.ini for all php versions
 
+3.0 - 03/04/20 [Author: Fagner Mendes]
+#Changes
+- Added the function that custom tamplate zone in cPanel
+
 CHANGELOG
 
 echo ""
@@ -78,6 +82,7 @@ sleep 5
 echo "Setting default mail catching"
 sed -i s/defaultmailaction=fail/defaultmailaction=fail/g' /var/cpanel/cpanel.config
 echo "Done"
+clear
 
 sleep 5
 
@@ -99,6 +104,7 @@ sed -i 's/PassivePortRange 49152 65534/PassivePortRange 30000 50000/g' /etc/pure
 sed -i 's/AnonymousCantUpload no/AnonymousCantUpload yes/g' /etc/pure-ftpd.conf
 /scripts/restartsrv_ftpd --restart
 echo "Done..."
+clear
 
 sleep 5
 
@@ -154,18 +160,26 @@ echo "Renaming the index files"
 mv index.html index.html-bkp
 mv index.text index.text-bkp
 echo "Done..."
+clear
+
+sleep 5
+
 
 echo "Downlowing the new files, please wait..."
 sleep 5"
 wget http://arquivos.servhost.com.br/index.html --http-user=romero --http-passwd=servhost84@!
 wget http://arquivos.servhost.com.br/index.text --http-user=romero --http-passwd=servhost84@!
 echo "Done..."
+clear
+
+sleep 5
 
 echo "Prepare to rename the files CSF"
 cd /etc/csf
 mv csf.allow csf.allow-bkp
 mv csf.deny csf.deny-bkp
 echo "Done..."
+clear
 
 sleep 5
 
@@ -173,6 +187,7 @@ echo "Downlowing the new files, please wait..."
 wget http://arquivos.servhost.com.br/csf.allow --http-user=romero --http-passwd=servhost84@!
 wget http://arquivos.servhost.com.br/csf.deny --http-user=romero --http-passwd=servhost84@!
 echo "Done..."
+clear
 
 sleep 5
 
@@ -180,6 +195,7 @@ echo "Setting permissions for csf files configuration"
 chmod 600 /etc/csf/csf.allow
 chmod 600 /etc/csf/csf.deny
 echo "Done..."
+clear
 
 sleep 5
 
@@ -188,17 +204,25 @@ cd /etc
 mv hosts.allow hosts.allow-bkp 
 mv hosts.deny hosts.deny-bkp
 echo "Done..."
+clear
+
+sleep 5
 
 echo "Downlowding the new files, please wait..."
 wget http://arquivos.servhost.com.br/hosts.allow --http-user=romero --http-passwd=servhost84@!
 wget http://arquivos.servhost.com.br/hosts.deny --http-user=romero --http-passwd=servhost84@!
 echo "Done..."
+clear
+
 sleep 5
 
 echo "Setting new permissions"
 chmod 644 /etc/hosts.allow
 chmod 644 /etc/hosts.deny
 echo "Done..."
+clear
+
+sleep 5
 
 echo "user:mailman" >> /etc/csf/csf.pignore
 echo "user:dovecot" >> /etc/csf/csf.pignore
@@ -207,6 +231,9 @@ echo "user:dovenull" >> /etc/csf/csf.pignore
 echo "user:mysql" >> /etc/csf/csf.pignore
 echo "user:mailnull" >> /etc/csf/csf.pignore
 echo "user:rpm" >> /etc/csf/csf.pignore
+clear
+
+sleep 5
 
 echo "Prepare to rename csf.conf"
 mv /etc/csf/csf.conf /etc/csf/csf.conf-BKP
@@ -257,7 +284,6 @@ chmod 000 "$FILES2" > /dev/null 2>&1
 done
 
 echo "Done"
-
 clear
 
 sleep 5
@@ -276,6 +302,7 @@ echo "Prepare to edit recursion DNS"
 sed -i 's/recursion yes/recursion no/g' /etc/named.conf
 /scripts/restartsrv_named --restart
 echo "Done..."
+clear
 
 sleep 5
 
@@ -284,6 +311,7 @@ echo "30 23 * * * sh /root/remover.sh" >> /var/spool/cron/root
 wget http://arquivos.servhost.com.br/remover.sh --http-user=romero --http-passwd=servhost84@!
 chmod 755 /root/remover.sh
 echo "Done...
+clear
 
 sleep 5
 
@@ -295,11 +323,11 @@ echo "Install now, please wait...!"
 sleep 5
 /usr/local/bin/ea_install_profile --install /etc/cpanel/ea4/profiles/custom/ea-custom.json > /root/easyapacheinstall.log
 echo "Done..."
+clear
 
 sleep 5
 
 echo "Downloading the php.ini files for all php versions"
-
 cd /opt/cpanel/ea-php54/root/etc/
 mv php.ini-BKP
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.4-php.ini
@@ -349,14 +377,11 @@ mv ea.7.3-php.ini php.ini
 echo "done"
 clear
 
-Done"
-
-clear
-
 
 echo "Prepare to enable quotas"
 /scripts/fixquotas
 echo "Done..."
+clear
 
 sleep 5
 
@@ -369,6 +394,7 @@ mv spacemonitor.sh espaco.sh
 chmod 755 /root/bkp/espaco.sh
 echo "40 23 * * * sh /root/bkp/espaco.sh" >> /var/spool/cron/root
 echo "Done..."
+clear
 
 sleep 5
 
@@ -426,6 +452,7 @@ mv /root/.ssh/authorized_keys /root/.ssh/authorized_keys-BKP
 scp -P 1865 root@IP:/root/.ssh/authorized_keys /root/.ssh/
 chmod 600 authorized_keys
 echo "Done..."
+clear
 
 sleep 5
 
@@ -444,12 +471,14 @@ yum update --disablerepo=epel
 cd /root/
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/.mytop
 echo "Done..."
+clear
 
 sleep 5
 
 echo "Prepare to disable Selinux"
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 echo "Disabled"
+clear
 
 sleep 5
 
@@ -481,6 +510,15 @@ wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/cpanel
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/messages
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ssh
 echo "Done..."
+clear
+
+
+echo "Prepare to create hook SPF - custom template dns zones"
+bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/createhooksspf.sh)
+echo "Done"
+clear
+sleep 5
+
 
 
 echo "Prepare to send emails"
