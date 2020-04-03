@@ -14,6 +14,7 @@
 - Was added another if to compare a another direcetory
 CHANGELOG
 
+echo ""
 
 DIR=`ls /var/cpanel/perl5/lib/`
 if [ -e "/var/cpanel/perl5/lib" ]; then
@@ -31,6 +32,17 @@ if [ -e "/usr/local/cpanel/base/root_standardvirtualftp/" ]; then
 echo "Directory exist"
 else
 echo "Direcotory is not exist, do you want to create it?"
+read
 CRIATE=`mkdir -p /usr/local/cpanel/base/root_standardvirtualftp/`
+echo "Directory created"
+fi
+
+DIR3=`ls /var/cpanel/perl5/lib/`
+if [ -e "/var/cpanel/perl5/lib/" ]; then
+echo "Directory exist"
+else
+echo "Direcotory is not exist, do you want to create it?"
+read
+CRIATE=`mkdir -p /var/cpanel/perl5/lib/`
 echo "Directory created"
 fi
