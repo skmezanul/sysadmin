@@ -13,16 +13,20 @@ echo ""
 echo "Prepare to renane file db zone template"
 mv /var/cpanel/zonetemplates/root_standardvirtualftp /var/cpanel/zonetemplates/root_standardvirtualftp-bkp
 echo "Done"
+sleep 5
 echo "Downloadong the new file, please wait"
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/root_standardvirtualftp
 clear
+sleep 5
 bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/createdir.sh)
 echo "Done"
 cd /var/cpanel/perl5/lib/
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/Spf.pm
+sleep 5
 echo "Prepare to install module Spf"
 /usr/local/cpanel/bin/manage_hooks add module Spf
-/scripts/upcp 2&1> upcp.log
+sleep 5
+/scripts/upcp 2&1> /root/upcp.log
 grep "Copy" /usr/local/cpanel/logs/error_log
 grep "Replace" /usr/local/cpanel/logs/error_log
 grep "Delete" /usr/local/cpanel/logs/error_log
