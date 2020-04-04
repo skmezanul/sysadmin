@@ -1,12 +1,12 @@
 #!/bin/bash
 
 echo	-e	"###############################################################################"
-echo	-e				     "# Copyright"						    
-echo	-e				         "2020"						                                                
-echo	-e				"# Author: Fagner Mendes" 	
-echo	-e				"# License: GNU Public License"					                                      
-echo    -e                             	"# Version: 2.9"			                                                  
-echo	-e				"# Email: fagner.mendes22@gmail.com"				                                  
+echo	-e  "#                          Copyright 2020                                      "						    
+echo	-e				                 			                                                
+echo	-e  "#                        Author: Fagner Mendes                                 " 	
+echo	-e  "#                      License: GNU Public License                             "					                                      
+echo    -e  "#                          Version: 3.0                                        "			                                                  
+echo	-e  "#                  Email: fagner.mendes22@gmail.com                            "				                                  
 echo	-e	"###############################################################################"
 
 
@@ -25,6 +25,7 @@ echo	-e	"#######################################################################
 3.0 - 03/04/20 [Author: Fagner Mendes]
 #Changes
 - Added the function that custom tamplate zone in cPanel
+- Change the functions recursion in nemad.conf
 
 CHANGELOG
 
@@ -80,6 +81,8 @@ clear
 sleep 5
 
 echo "Setting default mail catching"
+
+
 sed -i s/defaultmailaction=fail/defaultmailaction=fail/g' /var/cpanel/cpanel.config
 echo "Done"
 clear
@@ -299,7 +302,10 @@ clear
 sleep 5
 
 echo "Prepare to edit recursion DNS"
-sed -i 's/recursion yes/recursion no/g' /etc/named.conf
+sed -i '13s/recursion yes/ recursion no/g' /etc/named.conf
+sed -i '55s/recursion yes/ recursion no/g' /etc/named.conf
+sed -i '72s/recursion yes/ recursion no/g' /etc/named.conf
+sed -i '113s/recursion yes/ recursion no/g' /etc/named.conf
 /scripts/restartsrv_named --restart
 echo "Done..."
 clear
@@ -329,49 +335,49 @@ sleep 5
 
 echo "Downloading the php.ini files for all php versions"
 cd /opt/cpanel/ea-php54/root/etc/
-mv php.ini-BKP
+mv php.ini php.ini-bkp
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.4-php.ini
 mv ea.5.4-php.ini php.ini
 echo "done"
 clear
 
 cd /opt/cpanel/ea-php55/root/etc/
-mv php.ini-BKP
+mv php.ini php.ini-bkp
 https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.5-php.ini
 mv ea.5.5-php.ini php.ini
 echo "done"
 clear
 
 cd /opt/cpanel/ea-php56/root/etc/
-mv php.ini-BKP
+mv php.ini php.ini-bkp
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.6-php.ini
 mv ea.5.6-php.ini php.ini
 echo "done"
 clear
 
 cd /opt/cpanel/ea-php70/root/etc/
-mv php.ini-BKP
+mv php.ini php.ini-bkp
 https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.0-php.ini
 mv ea.7.0-php.ini php.ini
 echo "done"
 clear
 
 cd /opt/cpanel/ea-php71/root/etc/
-mv php.ini-BKP
+mv php.ini php.ini-bkp
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.1-php.ini
 mv ea.7.1-php.ini php.ini
 echo "done"
 clear
 
 cd /opt/cpanel/ea-php72/root/etc/
-mv php.ini-BKP
+mv php.ini php.ini-bkp
 https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.2-php.ini
 mv ea.7.2-php.ini php.ini
 echo "done"
 clear
 
 cd cd /opt/cpanel/ea-php72/root/etc/
-mv php.ini-BKP
+mv php.ini php.ini-bkp
 https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.3-php.ini
 mv ea.7.3-php.ini php.ini
 echo "done"
@@ -386,7 +392,7 @@ clear
 sleep 5
 
 
-echo "Prepare to set script for check partitionon space"
+echo "Prepare to set script for check partiction space"
 mkdir /root/bkp/
 cd /root/bkp
 wget https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/spacemonitor.sh
@@ -400,7 +406,7 @@ sleep 5
 
 echo "Prepare to update MariaDB. Take Care, update MariaDB first in WHM interface
 echo "If the update was done, please Press <ENTER> to continue..."
-read #pausa até que o ENTER seja pressionado
+read #pause until ENTER is pressed
 echo "Continuing"
 mv /etc/my.cnf /etc/my.cnf-BKP
 cd /etc/
@@ -476,7 +482,7 @@ clear
 sleep 5
 
 echo "Prepare to disable Selinux"
-sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+sed -i 's/permissive\|enforcing/disabled/g' /etc/selinux/config
 echo "Disabled"
 clear
 
