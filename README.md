@@ -26,7 +26,7 @@ In addition to these the routine is also applied to services:
 
 blacklistcheck.sh - Verify if the IP address are listed on RBL's
 
-confcpanelserver.sh - Configure a cPanel Server
+confcpanelvpsserver.sh - Configure a VPS cPanel Server
 
 crowleyspam.sh - Verify spam in the server and check if the main IP is listed in RBL
 
