@@ -21,7 +21,7 @@ clear
 
 echo ""
 
-echo "Prepare to start SA to all account in the server"
+echo "Prepare to start SA to all accounts in the server"
 /usr/local/cpanel/3rdparty/bin/sa-learn -p /home/*/.spamassassin/user_prefs --use-ignores --spam /home/*/mail/*/*/.spam/{cur,new}
 echo " The process was done"
 
