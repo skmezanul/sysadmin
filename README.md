@@ -28,13 +28,21 @@ blacklistcheck.sh - Verify if the IP address are listed on RBL's
 
 confcpanelvpsserver.sh - Configure a VPS cPanel Server
 
+checkrdns.sh - Check rDNS for a massive list IPs
+
 crowleyspam.sh - Verify spam in the server and check if the main IP is listed in RBL
+
+createdir.sh - Create direcorys for a custom implemetation hooks in cPanel
+
+createhooksspf.sh - Create a custom hooks - This hooks create a custom module SPF
 
 deletequeue.sh - Delete all the queue in the server
 
 doveadm.sh - Create subfolders in the Maidirbox
 
 forcequeueautossl.sh - Force the queue AutoSSL in WHM
+ 
+grantdatase.sh - Add a user to a database
 
 httpdmonitor.sh - Monitor for HTTPD Server
 
@@ -50,9 +58,13 @@ installPAFP.sh - Install and configure a Server with PhP, Apache, Ftp and Postgr
 
 installcloudcpanel.sh - Install and configure a cPanel cloud server by zero
 
+installtools.sh - Install services epel-release htop atop iftop apachetop mytop nload nethogs
+
 lpcp.sh - List the email account and change the password for a default pass
 
 lvestatsrebuilddb.sh - Rebuild LVE corrupted DB
+
+monitorfull.sh - A full monitoring for server
 
 mysqlproc.sh - Verify mysql process - The same that Show Mysql Process on the WHM
 
@@ -73,6 +85,8 @@ roudcubebase.sh - Verify if the roudcube DB is mysql or sqllite
 rpd.sh - Resolse packages duplicates in the system
 
 softaculousinstall.sh - Install the Softaculous in cPanel server
+
+sa-learn2.sh - Search SA for all accounts in cPanel server
 
 spacemonitor.sh - Verify space in the some partition
 
