@@ -5,7 +5,7 @@ echo	-e  "#                          Copyright 2020                             
 echo	-e				                 			                                                
 echo	-e  "#                        Author: Fagner Mendes                                 " 	
 echo	-e  "#                      License: GNU Public License                             "					                                      
-echo    -e  "#                          Version: 3.0                                        "			                                                  
+echo    -e  "#                          Version: 3.1                                        "			                                                  
 echo	-e  "#                  Email: fagner.mendes22@gmail.com                            "				                                  
 echo	-e	"###############################################################################"
 
@@ -25,9 +25,15 @@ echo	-e	"#######################################################################
 3.0 - 03/04/20 [Author: Fagner Mendes]
 #Changes
 - Added the function that custom tamplate zone in cPanel
-- Change the functions recursion in nemad.conf
+- Change the functions recursion in nemed.conf
+
+3.1 - 14/04/20 [Author: Fagner Mendes]
+#Changes
+- Was added the step install ImunifyAV
 
 CHANGELOG
+
+
 
 echo ""
 
@@ -525,6 +531,15 @@ echo "Done"
 clear
 sleep 5
 
+
+echo ""
+
+printf "Prepare to install ImunifyAV in the server"
+https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/imuifyAV.sh
+printf "Imunify was installed with success"
+clear
+
+echo ""
 
 
 echo "Prepare to send emails"
