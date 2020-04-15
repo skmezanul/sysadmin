@@ -1,5 +1,18 @@
+#!/bin/bash
+
+###############################################################################
+# Copyright 2020							                                                
+# Author: Fagner Mendes							                                          
+# License: GNU Public License						                                      
+# Version: 1.0								                                                  
+# Email: fagner.mendes22@gmail.com					                                  
+###############################################################################
+
+echo ""
+
 user=$(pwd | cut -d/ -f3) 
-installs=$(find /home/$user/public_html/ -iname en-gb.xml | grep language | head -n1)
-echo -e "Joomla PATH Installation: $(find /home/$user/public_html/ -iname en-gb.xml | grep language | head -n1 | sed 's/^\(\/home\/.*\)\/language.*$/\1/g')"
-cat $installs | egrep "<version>" | sed 's/<.*>\(.*\)<\/.*>/Joomla Version: \1/g;s/\t//g'
-echo -e "\033[01;35mGreetz to IgorA"
+wget https://downloads.joomla.org/br/cms/joomla3/3-9-16/Joomla_3-9-16-Stable-Full_Package.zip?format=zip 
+unzip Joomla_3-9-16-Stable-Full_Package.zip?format=zip
+find $user -type f -exec chown $user.$user {} +
+rm -rf Joomla_3-9-16-Stable-Full_Package.zip?format=zip
+echo -e "\033[01;35mSay Hello to Brazil"
