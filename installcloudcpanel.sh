@@ -271,7 +271,7 @@ clear
 sleep 5
 
 echo "Prepare to changes the options in the SSHD"
-sed -i 's/Port 22/Port 1865/g' /etc/ssh/sshd_config
+sed -i 's/Port 1891/Port 1865/g' /etc/ssh/sshd_config
 echo "Protocol 2" >> /etc/ssh/sshd_config
 sed -i 's/#PermitRootLogin yes/PermitRootLogin without-password/g' /etc/ssh/sshd_config
 sed -i 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config
