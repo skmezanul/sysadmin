@@ -74,6 +74,7 @@ mv /var/cpanel/cpanel.config /var/cpanel/cpanel.config-BKP
 cd /var/cpanel/
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/cpanel.config
 chmod 644 cpanel.config
+chown root.wheel /var/cpanel/cpanel.config
 echo "Done..."
 clear
 
@@ -109,7 +110,7 @@ sleep 5
 
 echo "Disable functions to Pure-FTPD"
 sed -i 's/NoAnonymous no/NoAnonymous yes/g' /etc/pure-ftpd.conf
-sed -i 's/PassivePortRange 49152 65534/PassivePortRange 30000 50000/g' /etc/pure-ftpd.conf
+sed -i 's/PassivePortRange 30000 32000/PassivePortRange 30000 50000/g' /etc/pure-ftpd.conf
 sed -i 's/AnonymousCantUpload no/AnonymousCantUpload yes/g' /etc/pure-ftpd.conf
 /scripts/restartsrv_ftpd --restart
 echo "Done..."
@@ -534,9 +535,9 @@ sleep 5
 
 echo ""
 
-printf "Prepare to install ImunifyAV in the server"
+echo "Prepare to install ImunifyAV in the server"
 https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/imuifyAV.sh
-printf "Imunify was installed with success"
+echo "Imunify was installed with success"
 clear
 
 echo ""
