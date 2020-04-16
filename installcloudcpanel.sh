@@ -5,7 +5,7 @@ echo	-e  "#                          Copyright 2020                             
 echo	-e				                 			                                                
 echo	-e  "#                        Author: Fagner Mendes                                 " 	
 echo	-e  "#                      License: GNU Public License                             "					                                      
-echo    -e  "#                          Version: 3.1                                        "			                                                  
+echo    -e  "#                          Version: 3.2                                        "			                                                  
 echo	-e  "#                  Email: fagner.mendes22@gmail.com                            "				                                  
 echo	-e	"###############################################################################"
 
@@ -30,6 +30,10 @@ echo	-e	"#######################################################################
 3.1 - 14/04/20 [Author: Fagner Mendes]
 #Changes
 - Was added the step install ImunifyAV
+
+3.2 - 16/04/20 [Author: Fagner Mendes]
+#Changes
+- Disabled the function that copy cpanel.config from another server
 
 CHANGELOG
 
@@ -458,14 +462,14 @@ clear
 
 sleep 5
 
-echo "Prepare to copy SSH key"
-cd ~ ; mkdir .ssh ; chmod 700 .ssh ; cd .ssh
-mv /root/.ssh/authorized_keys /root/.ssh/authorized_keys-BKP
-/root/.ssh/
-scp -P 1865 root@IP:/root/.ssh/authorized_keys /root/.ssh/
-chmod 600 authorized_keys
-echo "Done..."
-clear
+#echo "Prepare to copy SSH key"
+#cd ~ ; mkdir .ssh ; chmod 700 .ssh ; cd .ssh
+#mv /root/.ssh/authorized_keys /root/.ssh/authorized_keys-BKP
+#/root/.ssh/
+#scp -P 1865 root@IP:/root/.ssh/authorized_keys /root/.ssh/
+#chmod 600 authorized_keys
+#echo "Done..."
+#clear
 
 sleep 5
 
