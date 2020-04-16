@@ -403,7 +403,7 @@ clear
 sleep 5
 
 
-echo "Prepare to set script for check partiction space"
+echo "Prepare to set script for check partition space"
 mkdir /root/bkp/
 cd /root/bkp
 wget https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/spacemonitor.sh
