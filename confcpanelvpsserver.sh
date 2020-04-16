@@ -63,7 +63,7 @@ clear
 sleep 5
 
 echo "Updating the cPanel, please wait..."
-/scripts/upcp --force > /root/upcp.log
+/scripts/upcp --force >> /root/upcp.log
 echo "Done"
 clear
 
@@ -80,7 +80,7 @@ clear
 sleep 5
 
 echo "Prepare to install PostgreSLQ"
-/scripts/installpostgres > /root/postgresinstall.log
+/scripts/installpostgres >> /root/postgresinstall.log
 echo "Done"
 clear
 
@@ -142,7 +142,7 @@ wget https://download.configserver.com/cmc.tgz
 tar -xzf cmc.tgz
 
 cd cmc/
-sh install.sh > /root/modsecinstall.log
+sh install.sh >> /root/modsecinstall.log
 cd ~
 rm -f cmc.tgz
 rm -rf cmc/
@@ -300,7 +300,7 @@ sleep 5
 echo "Prepare to intall DNS Check"
 cd ~
 wget http://download.ndchost.com/accountdnscheck/latest-accountdnscheck
-sh latest-accountdnscheck > /root/dnscheckinstall.log
+sh latest-accountdnscheck >> /root/dnscheckinstall.log
 rm -f latest-accountdnscheck
 echo "Done..."
 clear
@@ -333,7 +333,7 @@ cd /etc/cpanel/ea4/profiles/custom
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea-custom.json
 echo "Install now, please wait...!"
 sleep 5
-/usr/local/bin/ea_install_profile --install /etc/cpanel/ea4/profiles/custom/ea-custom.json > /root/easyapacheinstall.log
+/usr/local/bin/ea_install_profile --install /etc/cpanel/ea4/profiles/custom/ea-custom.json >> /root/easyapacheinstall.log
 echo "Done..."
 clear
 
@@ -398,7 +398,7 @@ clear
 sleep 5
 
 
-echo "Prepare to set script for check partiction space"
+echo "Prepare to set script for check partition space"
 mkdir /root/bkp/
 cd /root/bkp
 wget https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/spacemonitor.sh
@@ -451,7 +451,7 @@ sleep 5
 
 echo "Prepare to fix erros for Roundcube"
 rpm -e --nodeps cpanel-roundcubemail
-/usr/local/cpanel/scripts/check_cpanel_rpms --fix > /root/fixroundcube.log
+/usr/local/cpanel/scripts/check_cpanel_rpms --fix >> /root/fixroundcube.log
 echo "Done..."
 clear
 
@@ -478,10 +478,6 @@ wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/.mytop
 echo "Mytop is configured"
 clear
 
-cd /root/
-wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/.mytop
-echo "Done..."
-clear
 
 sleep 5
 
