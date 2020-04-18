@@ -387,7 +387,7 @@ mv ea.7.2-php.ini php.ini
 echo "done"
 
 
-cd cd /opt/cpanel/ea-php72/root/etc/
+cd /opt/cpanel/ea-php73/root/etc/
 mv php.ini php.ini-bkp
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.3-php.ini
 mv ea.7.3-php.ini php.ini
