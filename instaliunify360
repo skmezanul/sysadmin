@@ -1,0 +1,19 @@
+#!/bin/bash
+
+###############################################################################
+# Copyright 2020							                                                
+# Author: Fagner Mendes							                                          
+# License: GNU Public License						                                      
+# Version: 1.0								                                                  
+# Email: fagner.mendes22@gmail.com					                                  
+###############################################################################
+
+
+echo "Prepare to download Imunify360, please wait!!!"
+wget https://repo.imunify360.cloudlinux.com/defence360/i360deploy.sh
+echo "Inform the KEY"
+read KEY
+bash i360deploy.sh --key  $KEY
+echo ""
+
+echo "Done!"
