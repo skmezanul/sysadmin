@@ -350,49 +350,49 @@ mv php.ini php.ini-bkp
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.4-php.ini
 mv ea.5.4-php.ini php.ini
 echo "done"
-clear
+
 
 cd /opt/cpanel/ea-php55/root/etc/
 mv php.ini php.ini-bkp
-https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.5-php.ini
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.5-php.ini
 mv ea.5.5-php.ini php.ini
 echo "done"
-clear
+
 
 cd /opt/cpanel/ea-php56/root/etc/
 mv php.ini php.ini-bkp
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.6-php.ini
 mv ea.5.6-php.ini php.ini
 echo "done"
-clear
+
 
 cd /opt/cpanel/ea-php70/root/etc/
 mv php.ini php.ini-bkp
-https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.0-php.ini
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.0-php.ini
 mv ea.7.0-php.ini php.ini
 echo "done"
-clear
+
 
 cd /opt/cpanel/ea-php71/root/etc/
 mv php.ini php.ini-bkp
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.1-php.ini
 mv ea.7.1-php.ini php.ini
 echo "done"
-clear
+
 
 cd /opt/cpanel/ea-php72/root/etc/
 mv php.ini php.ini-bkp
-https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.2-php.ini
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.2-php.ini
 mv ea.7.2-php.ini php.ini
 echo "done"
-clear
+
 
 cd cd /opt/cpanel/ea-php72/root/etc/
 mv php.ini php.ini-bkp
-https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.3-php.ini
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.3-php.ini
 mv ea.7.3-php.ini php.ini
 echo "done"
-clear
+
 
 
 echo "Prepare to enable quotas"
