@@ -404,7 +404,7 @@ sleep 5
 
 
 echo "Prepare to set script for check partition space"
-mkdir /root/bkp/
+mkdir -p /root/bkp/
 cd /root/bkp
 wget https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/spacemonitor.sh
 mv spacemonitor.sh espaco.sh
@@ -430,7 +430,7 @@ clear
 sleep 5
 
 echo "Prepare to set Apache Monitor"
-mkdir /root/cron/
+mkdir -p /root/cron/
 cd /root/cron
 wget https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/httpdmonitor.sh
 mv httpdmonitor.sh http.sh
