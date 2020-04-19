@@ -5,7 +5,7 @@ echo	-e				     "# Copyright"
 echo	-e				         "2020"						                                                
 echo	-e				"# Author: Fagner Mendes" 	
 echo	-e				"# License: GNU Public License"					                                      
-echo    -e                             	"# Version: 3.1"			                                                  
+echo    -e                             	"# Version: 3.22"			                                                  
 echo	-e				"# Email: fagner.mendes22@gmail.com"				                                  
 echo	-e	"###############################################################################"
 
@@ -31,6 +31,11 @@ echo	-e	"#######################################################################
 3.1 - 14/04/20 [Author: Fagner Mendes]
 #Changes
 - Was added the step install ImunifyAV
+
+3.2 - 19/04/20 [Author: Fagner Mendes]
+#Changes
+- Removed step that download PHP.ini version 5.4 and 5.5
+- Added the srep to download PHP.ini version 7.4
 
 CHANGELOG
 
@@ -339,55 +344,47 @@ clear
 
 sleep 5
 
-echo "Downloading the php.ini files for all php versions"
-cd /opt/cpanel/ea-php54/root/etc/
-mv php.ini php.ini-bkp
-wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.4-php.ini
-mv ea.5.4-php.ini php.ini
-echo "done"
-clear
-
-cd /opt/cpanel/ea-php55/root/etc/
-mv php.ini php.ini-bkp
-https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.5-php.ini
-mv ea.5.5-php.ini php.ini
-echo "done"
-clear
 
 cd /opt/cpanel/ea-php56/root/etc/
 mv php.ini php.ini-bkp
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.6-php.ini
 mv ea.5.6-php.ini php.ini
 echo "done"
-clear
+
 
 cd /opt/cpanel/ea-php70/root/etc/
 mv php.ini php.ini-bkp
 https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.0-php.ini
 mv ea.7.0-php.ini php.ini
 echo "done"
-clear
+
 
 cd /opt/cpanel/ea-php71/root/etc/
 mv php.ini php.ini-bkp
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.1-php.ini
 mv ea.7.1-php.ini php.ini
 echo "done"
-clear
+
 
 cd /opt/cpanel/ea-php72/root/etc/
 mv php.ini php.ini-bkp
 https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.2-php.ini
 mv ea.7.2-php.ini php.ini
 echo "done"
-clear
 
-cd cd /opt/cpanel/ea-php72/root/etc/
+
+cd /opt/cpanel/ea-php73/root/etc/
 mv php.ini php.ini-bkp
 https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.3-php.ini
 mv ea.7.3-php.ini php.ini
 echo "done"
-clear
+
+cd /opt/cpanel/ea-php74/root/etc/
+mv php.ini php.ini-bkp
+https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.4-php.ini
+mv ea.7.4-php.ini php.ini
+echo "done"
+
 
 
 echo "Prepare to enable quotas"
