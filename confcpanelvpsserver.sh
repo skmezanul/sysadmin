@@ -5,7 +5,7 @@ echo	-e				     "# Copyright"
 echo	-e				         "2020"						                                                
 echo	-e				"# Author: Fagner Mendes" 	
 echo	-e				"# License: GNU Public License"					                                      
-echo    -e                             	"# Version: 3.22"			                                                  
+echo    -e                             	"# Version: 3.2"			                                                  
 echo	-e				"# Email: fagner.mendes22@gmail.com"				                                  
 echo	-e	"###############################################################################"
 
