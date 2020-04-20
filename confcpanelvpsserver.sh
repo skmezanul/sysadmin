@@ -537,13 +537,14 @@ clear
 
 echo "Prepate to set SA custom for all accounts and resellers"
 sleep 5
-mkdir -p /root/cpanel3-skel/.spamassassin
-mkdir -p /root/cpanel3-skel/cpanel3-skel/.spamassassin
-cd mkdir -p /root/cpanel3-skel/.spamassassin
+mkdir -p /root/cpanel3-skel/.spamassassin/
+mkdir -p /root/cpanel3-skel/cpanel3-skel/.spamassassin/
+cd /root/cpanel3-skel/.spamassassin/
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/user_prefs
-cd mkdir -p /root/cpanel3-skel/cpanel3-skel/.spamassassin
+cd /root/cpanel3-skel/cpanel3-skel/.spamassassin/
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/user_prefs
 echo "Done, nothing to do!"
+
 
 
 echo ""
