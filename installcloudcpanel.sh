@@ -562,14 +562,14 @@ echo ""
 
 
 echo "Prepare to send emails"
-cat /root/yumupdate.log | mail -s "yumupdate.log" fagner.mendes@servhost.com.br
-cat /root/upcp.log | mail -s "upcp.log" fagner.mendes@servhost.com.br
-cat /root/postgresinstall.log | mail -s "postgresinstall.log" fagner.mendes@servhost.com.br
-cat /root/modsecinstall.log | mail -s "modsecinstall.log" fagner.mendes@servhost.com.br
-cat /root/mailqueueinstall.log | mail -s "mailqueueinstall.log" fagner.mendes@servhost.com.br
-cat /root/dnscheckinstall.log | mail -s "dnscheckinstall.log" fagner.mendes@servhost.com.br
-cat /root/easyapacheinstall.log | mail -s "easyapacheinstall.log" fagner.mendes@servhost.com.br
-cat /root/fixroundcube.log | mail -s "fixroundcube.log" fagner.mendes@servhost.com.br
-cat /root/yum.log | mail -s "yum.log" fagner.mendes@servhost.com.br
+cat /root/yumupdate.log | mail -s "yumupdate.log" fagner.mendes22@gmail.com
+cat /root/upcp.log | mail -s "upcp.log" fagner.mendes22@gmail.com
+cat /root/postgresinstall.log | mail -s "postgresinstall.log" fagner.mendes22@gmail.com
+cat /root/modsecinstall.log | mail -s "modsecinstall.log" fagner.mendes22@gmail.com
+cat /root/mailqueueinstall.log | mail -s "mailqueueinstall.log" fagner.mendes22@gmail.com
+cat /root/dnscheckinstall.log | mail -s "dnscheckinstall.log" fagner.mendes22@gmail.com
+cat /root/easyapacheinstall.log | mail -s "easyapacheinstall.log" fagner.mendes22@gmail.com
+cat /root/fixroundcube.log | mail -s "fixroundcube.log" fagner.mendes22@gmail.com
+cat /root/yum.log | mail -s "yum.log" fagner.mendes22@gmail.com
 
 clear
