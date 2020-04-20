@@ -542,7 +542,7 @@ sleep 5
 echo ""
 
 echo "Prepare to install ImunifyAV in the server"
-https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/imuifyAV.sh
+https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/imunifyAV.sh
 echo "Imunify was installed with success"
 clear
 
