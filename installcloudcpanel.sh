@@ -5,7 +5,7 @@ echo	-e  "#                          Copyright 2020                             
 echo	-e				                 			                                                
 echo	-e  "#                        Author: Fagner Mendes                                 " 	
 echo	-e  "#                      License: GNU Public License                             "					                                      
-echo    -e  "#                          Version: 3.3                                        "			                                                  
+echo    -e  "#                          Version: 3.4                                        "			                                                  
 echo	-e  "#                  Email: fagner.mendes22@gmail.com                            "				                                  
 echo	-e	"###############################################################################"
 
@@ -39,6 +39,10 @@ echo	-e	"#######################################################################
 #Changes
 - Removed step that download PHP.ini version 5.4 and 5.5
 - Added the srep to download PHP.ini version 7.4
+
+3.4 - 20/04/20 [Author: Fagner Mendes]
+#Changes
+- Added step Prepate to set SA custom for all accounts and resellers
 
 CHANGELOG
 
@@ -284,6 +288,7 @@ sed -i 's/Port 1891/Port 1865/g' /etc/ssh/sshd_config
 echo "Protocol 2" >> /etc/ssh/sshd_config
 sed -i 's/#PermitRootLogin yes/PermitRootLogin without-password/g' /etc/ssh/sshd_config
 sed -i 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config
+sed -i '21d' /etc/ssh/sshd_config
 /scripts/restartsrv_sshd --restart
 echo "Done..."
 
@@ -338,7 +343,7 @@ clear
 sleep 5
 
 echo "Prepare to install EA customization, since 5.4 to 7.3 and any extensions"
-mkdir /etc/cpanel/ea4/profiles/custom
+mkdir -p /etc/cpanel/ea4/profiles/custom
 cd /etc/cpanel/ea4/profiles/custom
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea-custom.json
 echo "Install now, please wait...!"
@@ -400,6 +405,7 @@ sleep 5
 
 
 echo "Prepare to set script for check partition space"
+cd ~
 mkdir -p /root/bkp/
 cd /root/bkp
 wget https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/spacemonitor.sh
@@ -407,7 +413,7 @@ mv spacemonitor.sh espaco.sh
 chmod 755 /root/bkp/espaco.sh
 echo "40 23 * * * sh /root/bkp/espaco.sh" >> /var/spool/cron/root
 echo "Done..."
-clear
+
 
 sleep 5
 
@@ -507,10 +513,10 @@ sleep 5
 
 echo "Prepare to check Roundcube DB"
 bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/roudcubebase.sh)
-echo "Is all right? Press <ENTER> to continue"
+echo "It's all right? Press <ENTER> to continue"
 read #pause until ENTER is pressed
 echo "Done..."
-clear
+
 
 sleep 5
 
@@ -539,6 +545,18 @@ echo "Prepare to install ImunifyAV in the server"
 https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/imuifyAV.sh
 echo "Imunify was installed with success"
 clear
+
+
+echo "Prepate to set SA custom for all accounts and resellers"
+sleep 5
+mkdir -p /root/cpanel3-skel/.spamassassin
+mkdir -p /root/cpanel3-skel/cpanel3-skel/.spamassassin
+cd mkdir -p /root/cpanel3-skel/.spamassassin
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/user_prefs
+cd mkdir -p /root/cpanel3-skel/cpanel3-skel/.spamassassin
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/user_prefs
+echo "Done, nothing to do!"
+
 
 echo ""
 
