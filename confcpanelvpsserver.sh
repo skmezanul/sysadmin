@@ -5,7 +5,7 @@ echo	-e				     "# Copyright"
 echo	-e				         "2020"						                                                
 echo	-e				"# Author: Fagner Mendes" 	
 echo	-e				"# License: GNU Public License"					                                      
-echo    -e                             	"# Version: 3.2"			                                                  
+echo    -e                             	"# Version: 3.3"			                                                  
 echo	-e				"# Email: fagner.mendes22@gmail.com"				                                  
 echo	-e	"###############################################################################"
 
@@ -36,6 +36,10 @@ echo	-e	"#######################################################################
 #Changes
 - Removed step that download PHP.ini version 5.4 and 5.5
 - Added the srep to download PHP.ini version 7.4
+
+3.3 - 19/04/20 [Author: Fagner Mendes]
+#Chaged
+- Added prepate to set SA custom for all accounts and resellers
 
 CHANGELOG
 
@@ -332,9 +336,9 @@ clear
 
 sleep 5
 
-echo "Prepare to install EA customization, since 5.4 to 7.3 and any extensions"
-mkdir /etc/cpanel/ea4/profiles/custom
-cd /etc/cpanel/ea4/profiles/custom
+echo "Prepare to install EA customization, since 5.4 to 7.4 and any extensions"
+mkdir -p /etc/cpanel/ea4/profiles/custom/
+cd /etc/cpanel/ea4/profiles/custom/
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea-custom.json
 echo "Install now, please wait...!"
 sleep 5
@@ -396,8 +400,9 @@ sleep 5
 
 
 echo "Prepare to set script for check partition space"
-mkdir /root/bkp/
-cd /root/bkp
+cd ~
+mkdir -p /root/bkp/
+cd /root/bkp/
 wget https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/spacemonitor.sh
 mv spacemonitor.sh espaco.sh
 chmod 755 /root/bkp/espaco.sh
@@ -454,14 +459,14 @@ clear
 
 sleep 5
 
-echo "Prepare to copy SSH key"
-cd ~ ; mkdir .ssh ; chmod 700 .ssh ; cd .ssh
-mv /root/.ssh/authorized_keys /root/.ssh/authorized_keys-BKP
-/root/.ssh/
-scp -P 1865 root@IP:/root/.ssh/authorized_keys /root/.ssh/
-chmod 600 authorized_keys
-echo "Done..."
-clear
+#echo "Prepare to copy SSH key"
+#cd ~ ; mkdir .ssh ; chmod 700 .ssh ; cd .ssh
+#mv /root/.ssh/authorized_keys /root/.ssh/authorized_keys-BKP
+#/root/.ssh/
+#scp -P 1865 root@IP:/root/.ssh/authorized_keys /root/.ssh/
+#chmod 600 authorized_keys
+#echo "Done..."
+#clear
 
 sleep 5
 
@@ -500,7 +505,7 @@ bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/ro
 echo "Is all right? Press <ENTER> to continue"
 read #pause until ENTER is pressed
 echo "Done..."
-clear
+
 
 sleep 5
 
@@ -529,17 +534,29 @@ https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/imuifyAV.sh
 printf "Imunify was installed with success"
 clear
 
+
+echo "Prepate to set SA custom for all accounts and resellers"
+sleep 5
+mkdir -p /root/cpanel3-skel/.spamassassin
+mkdir -p /root/cpanel3-skel/cpanel3-skel/.spamassassin
+cd mkdir -p /root/cpanel3-skel/.spamassassin
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/user_prefs
+cd mkdir -p /root/cpanel3-skel/cpanel3-skel/.spamassassin
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/user_prefs
+echo "Done, nothing to do!"
+
+
 echo ""
 
 echo "Prepare to send emails"
-cat /root/yumupdate.log | mail -s "yumupdate.log" fagner.mendes@servhost.com.br
-cat /root/upcp.log | mail -s "upcp.log" fagner.mendes@servhost.com.br
-cat /root/postgresinstall.log | mail -s "postgresinstall.log" fagner.mendes@servhost.com.br
-cat /root/modsecinstall.log | mail -s "modsecinstall.log" fagner.mendes@servhost.com.br
-cat /root/mailqueueinstall.log | mail -s "mailqueueinstall.log" fagner.mendes@servhost.com.br
-cat /root/dnscheckinstall.log | mail -s "dnscheckinstall.log" fagner.mendes@servhost.com.br
-cat /root/easyapacheinstall.log | mail -s "easyapacheinstall.log" fagner.mendes@servhost.com.br
-cat /root/fixroundcube.log | mail -s "fixroundcube.log" fagner.mendes@servhost.com.br
-cat /root/yum.log | mail -s "yum.log" fagner.mendes@servhost.com.br
+cat /root/yumupdate.log | mail -s "yumupdate.log" fagner.mendes22@gmail.com
+cat /root/upcp.log | mail -s "upcp.log" fagner.mendes22@gmail.com
+cat /root/postgresinstall.log | mail -s "postgresinstall.log" fagner.mendes22@gmail.com
+cat /root/modsecinstall.log | mail -s "modsecinstall.log" fagner.mendes22@gmail.com
+cat /root/mailqueueinstall.log | mail -s "mailqueueinstall.log" fagner.mendes22@gmail.com
+cat /root/dnscheckinstall.log | mail -s "dnscheckinstall.log" fagner.mendes22@gmail.com
+cat /root/easyapacheinstall.log | mail -s "easyapacheinstall.log" fagner.mendes22@gmail.com
+cat /root/fixroundcube.log | mail -s "fixroundcube.log" fagner.mendes22@gmail.com
+cat /root/yum.log | mail -s "yum.log" fagner.mendes22@gmail.com
 
 clear
