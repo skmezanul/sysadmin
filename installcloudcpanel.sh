@@ -343,8 +343,8 @@ clear
 sleep 5
 
 echo "Prepare to install EA customization, since 5.4 to 7.3 and any extensions"
-mkdir -p /etc/cpanel/ea4/profiles/custom
-cd /etc/cpanel/ea4/profiles/custom
+mkdir -p /etc/cpanel/ea4/profiles/custom/
+cd /etc/cpanel/ea4/profiles/custom/
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea-custom.json
 echo "Install now, please wait...!"
 sleep 5
@@ -549,11 +549,11 @@ clear
 
 echo "Prepate to set SA custom for all accounts and resellers"
 sleep 5
-mkdir -p /root/cpanel3-skel/.spamassassin
-mkdir -p /root/cpanel3-skel/cpanel3-skel/.spamassassin
-cd mkdir -p /root/cpanel3-skel/.spamassassin
+mkdir -p /root/cpanel3-skel/.spamassassin/
+mkdir -p /root/cpanel3-skel/cpanel3-skel/.spamassassin/
+cd /root/cpanel3-skel/.spamassassin/
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/user_prefs
-cd mkdir -p /root/cpanel3-skel/cpanel3-skel/.spamassassin
+cd /root/cpanel3-skel/cpanel3-skel/.spamassassin/
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/user_prefs
 echo "Done, nothing to do!"
 
