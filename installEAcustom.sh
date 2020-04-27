@@ -1,5 +1,28 @@
 #!/bin/bash
 
+#!/bin/bash
+
+###############################################################################
+# Copyright 2020							                                                
+# Author: Fagner Mendes							                                          
+# License: GNU Public License						                                      
+# Version: 1.0								                                                  
+# Email: fagner.mendes22@gmail.com					                                  
+###############################################################################
+
+echo ""
+
+echo "Prepare to install EA customization, since 5.4 to 7.3 and any extensions"
+mkdir -p /etc/cpanel/ea4/profiles/custom/
+cd /etc/cpanel/ea4/profiles/custom/
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea-custom.json
+echo "Install now, please wait...!"
+sleep 5
+/usr/local/bin/ea_install_profile --install /etc/cpanel/ea4/profiles/custom/ea-custom.json >> /root/easyapacheinstall.log
+echo "Done..."
+clear
+
+
 cd /opt/cpanel/ea-php56/root/etc/
 mv php.ini php.ini-bkp
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.6-php.ini
