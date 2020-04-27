@@ -342,59 +342,9 @@ clear
 
 sleep 5
 
-echo "Prepare to install EA customization, since 5.4 to 7.3 and any extensions"
-mkdir -p /etc/cpanel/ea4/profiles/custom/
-cd /etc/cpanel/ea4/profiles/custom/
-wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea-custom.json
-echo "Install now, please wait...!"
-sleep 5
-/usr/local/bin/ea_install_profile --install /etc/cpanel/ea4/profiles/custom/ea-custom.json >> /root/easyapacheinstall.log
+echo "This is step to install EA and PHP.ini custom"
+https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/installEAcustom.sh
 echo "Done..."
-clear
-
-sleep 5
-
-
-cd /opt/cpanel/ea-php56/root/etc/
-mv php.ini php.ini-bkp
-wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.5.6-php.ini
-mv ea.5.6-php.ini php.ini
-echo "done"
-
-
-cd /opt/cpanel/ea-php70/root/etc/
-mv php.ini php.ini-bkp
-wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.0-php.ini
-mv ea.7.0-php.ini php.ini
-echo "done"
-
-
-cd /opt/cpanel/ea-php71/root/etc/
-mv php.ini php.ini-bkp
-wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.1-php.ini
-mv ea.7.1-php.ini php.ini
-echo "done"
-
-
-cd /opt/cpanel/ea-php72/root/etc/
-mv php.ini php.ini-bkp
-wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.2-php.ini
-mv ea.7.2-php.ini php.ini
-echo "done"
-
-
-cd /opt/cpanel/ea-php73/root/etc/
-mv php.ini php.ini-bkp
-wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.3-php.ini
-mv ea.7.3-php.ini php.ini
-echo "done"
-
-cd /opt/cpanel/ea-php74/root/etc/
-mv php.ini php.ini-bkp
-wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/ea.7.4-php.ini
-mv ea.7.4-php.ini php.ini
-echo "done"
-
 
 echo "Prepare to enable quotas"
 /scripts/fixquotas
