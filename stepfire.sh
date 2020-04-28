@@ -1,14 +1,3 @@
-echo "Prepare to configure and install firewall CSF"
-echo "Installing"
-wget https://download.configserver.com/csf.tgz 
-tar -xzf csf.tgz 
-cd csf/ 
-sh install.sh
-rm -f /root/install.sh
-clear
-
-sleep 5
-
 echo "Adding the user csf..."
 useradd csf -s /bin/false
 cd /etc/csf/messenger
