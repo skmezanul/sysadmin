@@ -4,7 +4,7 @@
 # Copyright 2020							                                                
 # Author: Fagner Mendes							                                          
 # License: GNU Public License						                                      
-# Version: 1.2								                                                  
+# Version: 1.3								                                                  
 # Email: fagner.mendes22@gmail.com					                                  
 ###############################################################################
 
@@ -63,3 +63,87 @@ systemctl enable vsftpd
 systemctl start vsftpd
 echo "The services vsftpd apache2 postgres was started"
 echo "done"
+
+
+echo "Prepare to rename vsftpd.conf
+mv /etc/vsftpd.conf /etc/vsftpd.conf-orig
+cd /etc/
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/vsftpd.conf
+chmod 644 vsftpd.conf
+chown root.root vsftpd.conf
+systemctl restart vsftpd.service
+echo "Done"
+
+echo "Prepare to rename apache2.conf"
+mv /etc/apache2/apache2.conf /etc/apache2/apache2.conf-orig
+cd /etc/apache2/
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/apache2.conf
+chmod 644 apache2.conf
+chown root.root. apache2.conf
+a2enmod rewrite
+apachectl restart
+echo "Done"
+
+
+echo "Prepare to rename files postgresql"
+mv /etc/postgresql/10/main/postgresql.conf /etc/postgresql/10/main/postgresql.conf-orig
+mv /etc/postgresql/10/main/pg_hba.conf /etc/postgresql/10/main/pg_hba.conf-orig
+cd /etc/postgresql/10/main/
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/postgresql.conf
+wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/pg_hba.conf
+chmod 644 postgresql.conf
+chmod 640 pg_hba.conf
+chown postgres.postgres postgresql.conf
+chown postgres.postgres pg_hba.conf
+systemctl restart postgresql.service
+echo "Done"
+
+
+echo "Prepare to create ftp user"
+read user
+useradd $user -b /var/www/html/
+echo "Prepare to set password"
+read user
+passwd $user
+echo "Done"
+
+
+echo "Prepare to create a postgres user"
+read user
+createuser -a -d -E -P $user
+echo "Done"
+
+
+echo "Prepare to rename the files permission - TCP Wrapper"
+cd /etc
+mv hosts.allow hosts.allow-bkp 
+mv hosts.deny hosts.deny-bkp
+echo "Done..."
+
+sleep 5
+
+echo "Downlowding the new files, please wait..."
+wget http://arquivos.servhost.com.br/hosts.allow --http-user=romero --http-passwd=servhost84@!
+wget http://arquivos.servhost.com.br/hosts.deny --http-user=romero --http-passwd=servhost84@!
+echo "Done..."
+
+sleep 5
+
+echo "Setting new permissions"
+chmod 644 /etc/hosts.allow
+chmod 644 /etc/hosts.deny
+echo "Done..."
+clear
+
+
+echo "Prepare to changes the options in the SSHD"
+sed -i 's/Port 1891/Port 1865/g' /etc/ssh/sshd_config
+echo "Protocol 2" >> /etc/ssh/sshd_config
+sed -i 's/PermitRootLogin yes/PermitRootLogin without-password/g' /etc/ssh/sshd_config
+sed -i 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config
+sed -i '21d' /etc/ssh/sshd_config
+/scripts/restartsrv_sshd --restart
+echo "Done..."
+
+
+
