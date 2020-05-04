@@ -2,7 +2,7 @@
 
 echo ""
 
-echo "Inform an mail account to send log"
+echo "Inform an email account to send log"
 read mail
 echo "Inform the cpuser"
 read cpuser
