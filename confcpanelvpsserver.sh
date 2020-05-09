@@ -376,7 +376,7 @@ clear
 sleep 5
 
 echo "Prepare to disable Selinux"
-sed -i 's/permissive\|enforcing/disabled/g' /etc/selinux/config
+setenforce 0
 echo "Disabled"
 clear
 
