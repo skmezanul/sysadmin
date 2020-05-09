@@ -78,7 +78,7 @@ clear
 
 sleep 5
 
-echo "Prepare to download the cpanel.config
+echo "Prepare to download the cpanel.config"
 mv /var/cpanel/cpanel.config /var/cpanel/cpanel.config-BKP
 cd /var/cpanel/
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/cpanel.config
@@ -208,7 +208,7 @@ clear
 
 sleep 5
 
-echo "Prepare to intall DNS Check"
+echo "Prepare to install DNS Check"
 cd ~
 wget http://download.ndchost.com/accountdnscheck/latest-accountdnscheck
 sh latest-accountdnscheck >> /root/dnscheckinstall.log
@@ -231,9 +231,8 @@ sleep 5
 
 echo "Adding the script remotion"
 echo "30 23 * * * sh /root/remover.sh" >> /var/spool/cron/root
-wget http://arquivos.servhost.com.br/remover.sh --http-user=romero --http-passwd=servhost84@!
 chmod 755 /root/remover.sh
-echo "Done...
+echo "Done..."
 clear
 
 sleep 5
@@ -302,11 +301,6 @@ sleep 5
 
 
 echo "Prepare to set script for check partition space"
-cd ~
-mkdir -p /root/bkp/
-cd /root/bkp/
-wget https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/spacemonitor.sh
-mv spacemonitor.sh espaco.sh
 chmod 755 /root/bkp/espaco.sh
 echo "40 23 * * * sh /root/bkp/espaco.sh" >> /var/spool/cron/root
 echo "Done..."
@@ -314,7 +308,7 @@ clear
 
 sleep 5
 
-echo "Prepare to update MariaDB. Take Care, update MariaDB first in WHM interface
+echo "Prepare to update MariaDB. Take Care, update MariaDB first in WHM interface"
 echo "If the update was done, please Press <ENTER> to continue..."
 read #pausa até que o ENTER seja pressionado
 echo "Continuing"
@@ -329,10 +323,6 @@ clear
 sleep 5
 
 echo "Prepare to set Apache Monitor"
-mkdir /root/cron/
-cd /root/cron
-wget https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/httpdmonitor.sh
-mv httpdmonitor.sh http.sh
 chmod 755 /root/cron/http.sh
 echo "00 * * * * sh /root/cron/http.sh" >> /var/spool/cron/root
 echo "Done..."
@@ -449,7 +439,6 @@ echo "Done, nothing to do!"
 
 
 
-echo ""
 
 echo "Prepare to send emails"
 cat /root/yumupdate.log | mail -s "yumupdate.log" fagner.mendes22@gmail.com
