@@ -11,9 +11,10 @@
 
 echo ""
 
+echo "Prepare to stom exim service"
+/scripts/restartsrv_exim --stop
 echo "Inform the ipaddress"
 read ipaddress
-/scripts/restartsrv_exim --stop
 sed -i 's/interface =.*/interface = $ipaddress/g' /etc/exim.conf
 sed -i 's/helo_data =.*/helo_data = ndns30524.dizinc.com/g' /etc/exim.conf
 /scripts/buildeximconf
