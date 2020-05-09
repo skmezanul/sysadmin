@@ -8,6 +8,11 @@
 # Email: fagner.mendes22@gmail.com					                                  
 ###############################################################################
 
+echo ""
+
+echo "Prepare to edit exim interface"
+bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/changeeximinterface.sh)
+
 
 echo "Inform the sender mail"
 read sendermail
