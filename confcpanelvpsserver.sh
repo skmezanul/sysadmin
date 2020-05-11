@@ -46,6 +46,10 @@ echo	-e	"#######################################################################
 - Added the step installion NTP
 - Added the adjust timezone
 
+3.5 - 11/05/20 [Author: Fagner Mendes]
+#Changes
+- Added step adjust AutoSSL
+
 CHANGELOG
 
 
@@ -457,7 +461,8 @@ echo "Prepare to adjust timezone"
 timedatectl set-timezone America/Recife
 echo "Done"
 
-
+echo "Prepare to adjust AutoSSL"
+https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/letsencrypt.sh
 
 
 
