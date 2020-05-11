@@ -174,7 +174,7 @@ clear
 
 sleep 5
 echo "Stating Stepfire"
-bash <(curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/stepfire.sh)
+bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/stepfire.sh)
 echo "Done"
 
 sleep 5
@@ -195,6 +195,7 @@ sleep 5
 
 echo "Prepare to changes the options in the SSHD"
 sed -i 's/Port 1891/Port 1865/g' /etc/ssh/sshd_config
+sed -i 's/Port 22/#Port 22/g' /etc/ssh/sshd_config
 echo "Protocol 2" >> /etc/ssh/sshd_config
 sed -i 's/#PermitRootLogin yes/PermitRootLogin without-password/g' /etc/ssh/sshd_config
 sed -i 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config
@@ -402,7 +403,7 @@ sleep 5
 echo ""
 
 echo "Prepare to install ImunifyAV in the server"
-https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/imunifyAV.sh
+bash <( curl https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/imunifyAV.sh)
 echo "Imunify was installed with success"
 clear
 
