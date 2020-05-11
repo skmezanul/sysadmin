@@ -96,5 +96,5 @@ cd /etc/csf/
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/csf.conf
 chmod 600 csf.conf
 csf -r
-echo "Done..."
-clear
+
+
