@@ -5,7 +5,7 @@ echo	-e  "#                          Copyright 2020                             
 echo	-e				                 			                                                
 echo	-e  "#                        Author: Fagner Mendes                                 " 	
 echo	-e  "#                      License: GNU Public License                             "					                                      
-echo    -e  "#                          Version: 3.5                                        "			                                                  
+echo    -e  "#                          Version: 3.6                                        "			                                                  
 echo	-e  "#                  Email: fagner.mendes22@gmail.com                            "				                                  
 echo	-e	"###############################################################################"
 
@@ -48,6 +48,10 @@ echo	-e	"#######################################################################
 #Changes
 - Added the step installion NTP
 - Added the adjust timezone
+
+3.6 - 11/05/20 [Author: Fagner Mendes]
+#Changes
+- Added the step adjust AutoSSL
 
 CHANGELOG
 
@@ -428,6 +432,9 @@ echo "Prepare to adjust timezone"
 timedatectl set-timezone America/Recife
 echo "Done"
 
+echo "Prepare to adjust AutoSSL"
+
+https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/letsencrypt.sh
 
 
 echo "Prepare to send emails"
