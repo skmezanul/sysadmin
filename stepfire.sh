@@ -1,3 +1,13 @@
+#!/bin/bash
+
+
+cd ~
+wget https://download.configserver.com/csf.tgz 
+tar -xzf csf.tgz 
+cd csf/ 
+sh install.sh
+
+
 echo "Adding the user csf..."
 useradd csf -s /bin/false
 cd /etc/csf/messenger
