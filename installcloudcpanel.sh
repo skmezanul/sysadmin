@@ -434,7 +434,7 @@ echo "Done"
 
 echo "Prepare to adjust AutoSSL"
 
-https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/letsencrypt.sh
+bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/letsencrypt.sh)
 
 
 echo "Prepare to send emails"
