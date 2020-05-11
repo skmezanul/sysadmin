@@ -373,7 +373,7 @@ sleep 5
 
 echo "Prepare to check Roundcube DB"
 bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/roudcubebase.sh)
-echo "It's all right? Press <ENTER> to continue"
+echo "Its all right? Press <ENTER> to continue"
 read #pause until ENTER is pressed
 echo "Done..."
 
