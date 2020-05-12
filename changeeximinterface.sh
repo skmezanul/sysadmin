@@ -11,7 +11,7 @@
 
 echo ""
 
-echo "Prepare to stom exim service"
+echo "Prepare to stop exim service"
 /scripts/restartsrv_exim --stop
 echo "Inform the ipaddress"
 read ipaddress
