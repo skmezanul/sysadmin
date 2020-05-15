@@ -12,5 +12,6 @@
 
 rpm -e --nodeps cpanel-roundcubemail
 /usr/local/cpanel/scripts/check_cpanel_rpms --fix
+ mysql -e 'drop database roundcube'
 /usr/local/cpanel/bin/update-roundcube-db --force
 
