@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#This script locate a user in cpanel server
+
+
+echo "Inform an valid domain"
+read domain
+/scripts/whoowns $domain
