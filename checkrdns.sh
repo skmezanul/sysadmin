@@ -13,6 +13,6 @@
 
 echo ""
 
-IPS=$( cat /root/host.txt )
+IPS=$( cat host.txt )
 for i in $IPS; do dig -x $i +short
 done
