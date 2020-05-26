@@ -21,7 +21,7 @@ sleep 5
 
 
 echo "Downlowing the new files, please wait..."
-sleep 5"
+sleep 5
 wget http://arquivos.servhost.com.br/index.html --http-user=romero --http-passwd=servhost84@!
 wget http://arquivos.servhost.com.br/index.text --http-user=romero --http-passwd=servhost84@!
 echo "Done..."
@@ -93,7 +93,7 @@ sleep 5
 echo "Prepare to rename csf.conf"
 mv /etc/csf/csf.conf /etc/csf/csf.conf-BKP
 cd /etc/csf/
-wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/csf.conf
+wget http://arquivos.servhost.com.br/csf.conf --http-user=romero --http-passwd=servhost84@!
 chmod 600 csf.conf
 csf -r
 
