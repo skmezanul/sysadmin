@@ -91,7 +91,7 @@ clear
 
 sleep 5
 
-echo "Prepare to download the cpanel.config
+echo "Prepare to download the cpanel.config"
 mv /var/cpanel/cpanel.config /var/cpanel/cpanel.config-BKP
 cd /var/cpanel/
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/cpanel.config
@@ -112,7 +112,7 @@ sleep 5
 echo "Setting default mail catching"
 
 
-sed -i s/defaultmailaction=fail/defaultmailaction=fail/g' /var/cpanel/cpanel.config
+sed -i 's/defaultmailaction=fail/defaultmailaction=fail/g' /var/cpanel/cpanel.config
 echo "Done"
 clear
 
@@ -173,7 +173,7 @@ echo "Done..."
 clear
 
 sleep 5
-echo "Stating Stepfire"
+echo "Starting Stepfire"
 bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/stepfire.sh)
 echo "Done"
 
@@ -248,13 +248,13 @@ echo "Adding the script remotion"
 echo "30 23 * * * sh /root/remover.sh" >> /var/spool/cron/root
 wget http://arquivos.servhost.com.br/remover.sh --http-user=romero --http-passwd=servhost84@!
 chmod 755 /root/remover.sh
-echo "Done...
+echo "Done..."
 clear
 
 sleep 5
 
 echo "This is step to install EA and PHP.ini custom"
-https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/installEAcustom.sh
+bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/installEAcustom.sh)
 echo "Done..."
 
 echo "Prepare to enable quotas"
@@ -278,7 +278,7 @@ echo "Done..."
 
 sleep 5
 
-echo "Prepare to update MariaDB. Take Care, update MariaDB first in WHM interface
+echo "Prepare to update MariaDB. Take Care, update MariaDB first in WHM interface"
 echo "If the update was done, please Press <ENTER> to continue..."
 read #pause until ENTER is pressed
 echo "Continuing"
@@ -416,7 +416,7 @@ cd /root/cpanel3-skel/.spamassassin/
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/user_prefs
 cd /root/cpanel3-skel/cpanel3-skel/.spamassassin/
 wget https://raw.githubusercontent.com/fagner-fmlo/arquivos/master/user_prefs
-echo "Done, nothing to do!"
+echo "Done"
 
 
 echo "prepare to install NTPD"
