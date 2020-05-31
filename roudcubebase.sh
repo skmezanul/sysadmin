@@ -19,7 +19,6 @@ CHANGELOG
 
 echo ""
 
-#!/bin/bash
 
 ROUNDCUBE=`/usr/bin/grep -i roundcube_db /var/cpanel/cpanel.config`
 if [ "${ROUNDCUBE}" == "${ROUNDCUBE}" ]; then
