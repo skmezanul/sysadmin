@@ -53,6 +53,10 @@ echo	-e	"#######################################################################
 #Changes
 - Added the step adjust AutoSSL
 
+3.7 - 05/06/20 [Author: Fagner Mendes]
+#Changes
+- Added the step flushdeny
+
 CHANGELOG
 
 
@@ -434,8 +438,14 @@ timedatectl set-timezone America/Recife
 echo "Done"
 
 echo "Prepare to adjust AutoSSL"
-
 bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/letsencrypt.sh)
+
+
+echo "Prepare to Downloading the flushdeny"
+cd /etc/cron.hourly
+wget http://arquivos.servhost.com.br/flushdeny.sh --http-user=romero --http-passwd=servhost84@!
+chmod +x flushdeny.sh
+echo "Done"
 
 
 echo "Prepare to send emails"
