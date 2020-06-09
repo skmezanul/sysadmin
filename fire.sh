@@ -22,10 +22,10 @@ wget http://arquivos.servhost.com.br/vps/csf.allow --http-user=romero --http-pas
 wget http://arquivos.servhost.com.br/vps/csf.deny --http-user=romero --http-passwd=servhost84@!
 chown root.root csf.conf
 chown root.root csf.allow
-chowm root.root csf.deny
+chown root.root csf.deny
 chmod 644 csf.conf csf.allow csf.deny
 
-bash configserverupdate.sh
+bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/updatecs.sh)
 
 echo "Done"
 
