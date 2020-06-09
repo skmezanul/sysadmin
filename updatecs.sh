@@ -13,4 +13,4 @@ echo "Starting the update process..."
 sleep 2
 curl -sL download.configserver.com/csupdate > /tmp/update-configserver.txt
 echo "The configserver plugin was updated!"
-done
+
