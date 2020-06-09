@@ -443,7 +443,7 @@ bash <( curl -s https://raw.githubusercontent.com/fagner-fmlo/sysadmin/master/le
 
 echo "Prepare to Downloading the flushdeny"
 cd /etc/cron.hourly
-wget http://arquivos.servhost.com.br/flushdeny.sh --http-user=romero --http-passwd=servhost84@!
+wget http://arquivos.servhost.com.br/vps/flushdeny.sh --http-user=romero --http-passwd=servhost84@!
 chmod +x flushdeny.sh
 echo "Done"
 
