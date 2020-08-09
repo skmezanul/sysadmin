@@ -18,7 +18,7 @@
 #MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #GNU General Public License for more details.
 
-#This script generates backup only for all user account in cPanel server
+#This script generates backup only databases for all user accounts in cPanel server
 
 echo ""
 
